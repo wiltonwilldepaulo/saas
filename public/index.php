@@ -3,13 +3,10 @@
 require "../vendor/autoload.php";
 
 use Slim\Factory\AppFactory;
-
 $app = AppFactory::create();
-
-$app->get('/', function ($request, $response) {
-    $response->getBody()->write("cliente");
-    return $response;
-});
-
-// Run app
+//INCLUIMOS AS CONFIGURAÇÕES
+require "../app/helpers/config.php";
+//INCLUIMOS TODAS AS ROTAS.
+require "../app/routes/site.php";
+//RUM APP
 $app->run();
