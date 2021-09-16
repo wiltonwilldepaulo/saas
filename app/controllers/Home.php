@@ -11,7 +11,9 @@ class Home extends Base
             $response,
             $this->setView("site/home"),
             [
-                "titulo" => "teste",
+                "titulo" => "Unesc - loja de saas",
+                "logo" => "",
+                "nome" => "Wilton Will de Paulo",
                 "link" => "http://localhost/cliente",
                 "descricao_label" => "Clientes"
             ]

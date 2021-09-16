@@ -25,6 +25,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/css/OverlayScrollbars.min.css">
+    <link rel="icon" href="{{logo}}" type="image/gif" sizes="16x16">
     <!-- Daterange picker -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css">
@@ -38,13 +39,15 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
-        <div class="container">
-            {% block master %}{% endblock %}
+            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
         {% include "site/admin_top_menu.html" %}
         {% include "site/admin_left_menu.html" %}
+        <div class="content-wrapper">
+
+            {% block master %}{% endblock %}
+
+        </div>
         {% include "site/footer.html" %}
     </div>
     <!-- REQUIRED SCRIPTS -->
