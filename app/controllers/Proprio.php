@@ -16,6 +16,7 @@ class Proprio extends Base
                 "nome" => "Wilton Will de Paulo",
                 "home" => "http://localhost",
                 "link" => "http://localhost",
+                "base_url" => BASE_URL,
                 "descricao_label" => "Controle e cadastro de empresa"
             ]
         );
