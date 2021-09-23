@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+
+
 class Home extends Base
 {
     public function home($request, $response)
@@ -13,7 +15,7 @@ class Home extends Base
             [
                 "titulo" => "Unesc - loja de saas",
                 "logo" => "",
-                "nome" => "Wilton Will de Paulo",
+                "nome" => "",
                 "link" => "http://localhost/cliente",
                 "descricao_label" => "Clientes"
             ]

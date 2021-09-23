@@ -2,10 +2,16 @@
 
 namespace app\controllers;
 
+use app\database\models\Empresa;
+
 class Proprio extends Base
 {
     public function proprio($request, $response)
     {
+
+        $Proprio = new Empresa;
+        $proprio = $Proprio->findAll();
+
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
@@ -14,6 +20,7 @@ class Proprio extends Base
                 "titulo" => "Unesc - cadastro de empresa",
                 "logo" => "",
                 "nome" => "Wilton Will de Paulo",
+                "empresa" => $proprio,
                 "home" => "http://localhost",
                 "link" => "http://localhost",
                 "base_url" => BASE_URL,

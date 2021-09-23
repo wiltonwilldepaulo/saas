@@ -1,11 +1,12 @@
 {% extends "site/admin_master_listagem.html" %}
 
 {% block master_listagem %}
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Listagem de próprio</h1>
+                <h1 class="m-0">Listagem de próprio</h1><br>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -17,6 +18,19 @@
     </div>
 </div>
 <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1>olá {{empresa.nome_fantasia}}</h1>
+                <ul>
+                    {% for empresa in items %}
+                    <li>{{ items.nome_fantasia}} oi</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
