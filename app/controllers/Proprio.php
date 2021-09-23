@@ -11,7 +11,6 @@ class Proprio extends Base
 
         $Proprio = new Empresa;
         $proprio = $Proprio->findAll();
-
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
@@ -20,7 +19,7 @@ class Proprio extends Base
                 "titulo" => "Unesc - cadastro de empresa",
                 "logo" => "",
                 "nome" => "Wilton Will de Paulo",
-                "empresa" => $proprio,
+                "proprio" => $proprio,
                 "home" => "http://localhost",
                 "link" => "http://localhost",
                 "base_url" => BASE_URL,
