@@ -6,6 +6,26 @@ use app\database\models\Empresa;
 
 class Proprio extends Base
 {
+    public function listaproprio($request, $response)
+    {
+
+        $Proprio = new Empresa;
+        $proprio = $Proprio->findAll();
+        //RETORNAMOS A VIEW 
+        return $this->getTwig()->render(
+            $response,
+            $this->setView("site/listaproprio"),
+            [
+                "titulo" => "Unesc - cadastro de empresa",
+                "logo" => "",
+                "proprio" => $proprio,
+                "home" => "http://localhost",
+                "cadastro" => "http://localhost/proprio",
+                "base_url" => BASE_URL,
+                "descricao_label" => "Controle e cadastro de empresa"
+            ]
+        );
+    }
     public function proprio($request, $response)
     {
 
@@ -18,10 +38,9 @@ class Proprio extends Base
             [
                 "titulo" => "Unesc - cadastro de empresa",
                 "logo" => "",
-                "nome" => "Wilton Will de Paulo",
                 "proprio" => $proprio,
                 "home" => "http://localhost",
-                "link" => "http://localhost",
+                "lista" => "http://localhost/listaproprio",
                 "base_url" => BASE_URL,
                 "descricao_label" => "Controle e cadastro de empresa"
             ]

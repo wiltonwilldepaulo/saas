@@ -6,12 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Listagem de próprio</h1><br>
+                <h1 class="m-0">Controle de próprio</h1><br>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="http:\\localhost">Início</a></li>
-                    <li class="breadcrumb-item active">Listagem</li>
+                    <li class="breadcrumb-item"><a href="{{home}}">Início</a></li>
+                    <li class="breadcrumb-item"><a href="{{lista}}">Listagem</a></li>
+                    <li class="breadcrumb-item active">Controle</li>
                 </ol>
             </div>
         </div>
@@ -21,46 +22,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <h1>olá {{empresa.nome_fantasia}}</h1>
-                <ul>
-                    {% for empresa in items %}
-                    <li>{{ items.nome_fantasia}} oi</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
                 <div class="card">
-                    <div class="card">
-                        <div class="card-body">
-                            <table id="tabela" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NOME | NOME FANTASIA </th>
-                                        <th>SOBRE NOME | RAZÃO SOCIAL</th>
-                                        <th>CPF | CNPJ</th>
-                                        <th>RG | IE</th>
-                                        <th>NASCIMENTO | FUNDAÇÃO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--Items array    Array-->
-                                    {% for proprios in proprio %}
-                                    <tr>
-                                        <td>{{proprios.nome_fantasia}}</td>
-                                        <td>{{proprios.sobrenome_razao}}</td>
-                                        <td>{{proprios.cpf_cnpj}}</td>
-                                        <td>{{proprios.rg_ie}}</td>
-                                        <td>{{proprios.nascimento_fundacao}}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                    <div class="card-header">
+                        <div class="btn-group">
+                            <a href="{{lista}}" type="button" class="btn btn-warning">
+                                <i class="fas fa-chevron-left"> </i> Voltar
+                            </a>
+                            <a href="{{cadastro}}" type="button" class="btn btn-success">
+                                <i class="fas fa-plus"> </i> Cadastrar
+                            </a>
                         </div>
+                    </div>
+                    <div class="card-body">
+
                     </div>
                 </div>
             </div>
