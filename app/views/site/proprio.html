@@ -1,6 +1,6 @@
-{% extends "site/admin_master_listagem.html" %}
+{% extends "site/admin_master_cadastro.html" %}
 
-{% block master_listagem %}
+{% block master_cadastro %}
 
 <div class="content-header">
     <div class="container-fluid">
@@ -50,6 +50,41 @@
                                     <div class="tab-content">
                                         <div class="active tab-pane" id="activity">
                                             <h3>Dados de próprio</h3>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-lg-6 col-md-6">
+                                                        <label for="edtnome">NOME | NOME FANTASIA</label>
+                                                        <input autofocus type="text" name="edtnome" class="form-control"
+                                                            id="edtnome"
+                                                            placeholder="Digite o nome da pessoa ou empresa!">
+                                                    </div>
+                                                    <div class="form-group col-lg-6 col-md-6">
+                                                        <label for="edtsobrenome">SOBRE NOME | RAZÃO
+                                                            SOCIAL</label>
+                                                        <input type="text" name="edtsobrenome" class="form-control"
+                                                            id="edtsobrenome"
+                                                            placeholder="Digite o sobre nome ou razão social!">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-lg-4 col-md-4">
+                                                        <label for="edtcpf">CPF | CNPJ</label>
+                                                        <input type="text" name="edtcpf" class="form-control"
+                                                            id="edtcpf" placeholder="Digite o CPF ou CNPJ da pessoa!">
+                                                    </div>
+                                                    <div class="form-group col-lg-4 col-md-4">
+                                                        <label for="edtrg">RG | IE</label>
+                                                        <input type="text" name="edtrg" class="form-control" id="edtrg"
+                                                            placeholder="Digite o RG ou o IE da pessoa!">
+                                                    </div>
+                                                    <div class="form-group col-lg-4 col-md-4">
+                                                        <label for="edtnascimento">NACIMENTO | FUNDAÇÃO</label>
+                                                        <input type="text" name="edtnascimento" class="form-control"
+                                                            id="edtnascimento"
+                                                            placeholder="Informe o nascimento ou fundação!">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" id="endereco">
                                             <h3>Dados de endereço</h3>
