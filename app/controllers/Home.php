@@ -15,7 +15,7 @@ class Home extends Base
             [
                 "titulo" => "Unesc - loja de saas",
                 "logo" => "/img/icon.png",
-                "nome" => "",
+                "nome" => "WILTON WILL DE PAULO",
                 "link" => "http://localhost/cliente",
                 "descricao_label" => "Clientes"
             ]

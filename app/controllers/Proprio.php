@@ -46,4 +46,8 @@ class Proprio extends Base
             ]
         );
     }
+    public function controleproprio()
+    {
+        return "Olá mundo";
+    }
 }
