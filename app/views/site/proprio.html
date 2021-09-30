@@ -18,26 +18,65 @@
         </div>
     </div>
 </div>
+<form method="post" id="frmproprio" name="frmproprio" enctype='multipart/form-data'></form>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="btn-group">
-                            <a href="{{lista}}" type="button" class="btn btn-warning">
-                                <i class="fas fa-chevron-left"> </i> Voltar
-                            </a>
-                            <a href="{{cadastro}}" type="button" class="btn btn-success">
-                                <i class="fas fa-plus"> </i> Cadastrar
-                            </a>
+                    <div class="card-body">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header p-2">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#activity" data-toggle="tab">
+                                                <i class="fas fa-building"> </i> Dados do próprio
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#endereco" data-toggle="tab">
+                                                <i class="fas fa-map-marker-alt"> </i> Dados de endereço
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#contato" data-toggle="tab">
+                                                <i class="fas fa-id-badge"> </i> Dados de contato
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="active tab-pane" id="activity">
+                                            <h3>Dados de próprio</h3>
+                                        </div>
+                                        <div class="tab-pane" id="endereco">
+                                            <h3>Dados de endereço</h3>
+                                        </div>
+
+                                        <div class="tab-pane" id="contato">
+                                            <h3>Dados de contato</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-
+                    <div class="card-footer">
+                        <div class="btn-group">
+                            <a href="{{lista}}" class="btn btn-warning">
+                                <i class="fas fa-chevron-left"> </i> Voltar
+                            </a>
+                            <button type="button" class="btn btn-success">
+                                <i class="fas fa-save"> </i> Salvar
+                            </button>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
 </section>
+</form>
 {% endblock %}
