@@ -8,7 +8,6 @@ class Proprio extends Base
 {
     public function listaproprio($request, $response)
     {
-
         $Proprio = new Empresa;
         $proprio = $Proprio->findAll();
         //RETORNAMOS A VIEW 
@@ -17,7 +16,8 @@ class Proprio extends Base
             $this->setView("site/listaproprio"),
             [
                 "titulo" => "Unesc - cadastro de empresa",
-                "logo" => "",
+                "nome" => "WILTON WILL DE PAULO",
+                "logo" => "/img/icon.png",
                 "proprio" => $proprio,
                 "home" => "http://localhost",
                 "cadastro" => "http://localhost/proprio",
@@ -28,7 +28,6 @@ class Proprio extends Base
     }
     public function proprio($request, $response)
     {
-
         $Proprio = new Empresa;
         $proprio = $Proprio->findAll();
         //RETORNAMOS A VIEW 
@@ -37,7 +36,8 @@ class Proprio extends Base
             $this->setView("site/proprio"),
             [
                 "titulo" => "Unesc - cadastro de empresa",
-                "logo" => "",
+                "nome" => "WILTON WILL DE PAULO",
+                "logo" => "/img/icon.png",
                 "proprio" => $proprio,
                 "home" => "http://localhost",
                 "lista" => "http://localhost/listaproprio",

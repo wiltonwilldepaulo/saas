@@ -14,7 +14,7 @@ class Home extends Base
             $this->setView("site/home"),
             [
                 "titulo" => "Unesc - loja de saas",
-                "logo" => "",
+                "logo" => "/img/icon.png",
                 "nome" => "",
                 "link" => "http://localhost/cliente",
                 "descricao_label" => "Clientes"
