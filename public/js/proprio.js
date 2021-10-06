@@ -1,10 +1,16 @@
 $(document).ready(function () {
-    $.ajax({
-        type: "post",
-        url: "controleproprio",
-        data: { "edtnome": "WILTON WILL DE PAULO" },
-        success: function (response) {
-            alert(response);
-        }
-    });
+
+    let btn = document.querySelector("#btn-salvar");
+
+    btn.onclick = function () {
+        $.ajax({
+            type: "post",
+            url: "controleproprio",
+            data: { dado: "teste" },
+            //contentType: 'application/json',
+            success: function (response) {
+
+            }
+        });
+    }
 });

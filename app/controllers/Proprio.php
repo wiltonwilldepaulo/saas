@@ -2,14 +2,12 @@
 
 namespace app\controllers;
 
-use app\database\models\Empresa;
-
 class Proprio extends Base
 {
     public function listaproprio($request, $response)
     {
-        $Proprio = new Empresa;
-        $proprio = $Proprio->findAll();
+        //$Proprio = new Empresa;
+        $proprio = []; //$Proprio->findAll();
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
@@ -28,8 +26,8 @@ class Proprio extends Base
     }
     public function proprio($request, $response)
     {
-        $Proprio = new Empresa;
-        $proprio = $Proprio->findAll();
+        //$Proprio = new Empresa;
+        $proprio = []; //$Proprio->findAll();
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
@@ -46,8 +44,15 @@ class Proprio extends Base
             ]
         );
     }
-    public function controleproprio()
+    public function controle($request, $response)
     {
-        return "Olá mundo";
+        $response->withStatus(400);
+        //pode funcionar assim
+        $body = file_get_contents("php://input");
+        //pode funcionar assim
+        //$body = filter_input(INPUT_POST, 'dado', FILTER_SANITIZE_STRING);
+        header("Content-Type: application/json"); //setting header before sending the JSON response back to the iPhone
+        echo ($body); // Converting the request body into JSON format and sending it as a response back to the iPhone. After execution of this step I'm getting the above weird format data as a response on iPhone.
+        die;
     }
 }

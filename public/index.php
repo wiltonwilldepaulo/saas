@@ -4,6 +4,7 @@ require "../vendor/autoload.php";
 
 use Slim\Factory\AppFactory;
 
+
 $app = AppFactory::create();
 define("BASE_URL", $app->getBasePath());
 //INCLUIMOS AS CONFIGURAÇÕES
