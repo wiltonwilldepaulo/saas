@@ -35,103 +35,106 @@
                     </div>
                 </div>
             </div>
-            <form method="post" id="frmproprio" name="frmproprio" enctype='multipart/form-data'></form>
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-header p-2">
-                                                <ul class="nav nav-pills">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" href="#activity" data-toggle="tab">
-                                                            <i class="fas fa-building"> </i> Dados do próprio
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#endereco" data-toggle="tab">
-                                                            <i class="fas fa-map-marker-alt"> </i> Dados de endereço
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#contato" data-toggle="tab">
-                                                            <i class="fas fa-id-badge"> </i> Dados de contato
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="tab-content">
-                                                    <div class="active tab-pane" id="activity">
-                                                        <h3>Dados de próprio</h3>
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="form-group col-lg-6 col-md-6">
-                                                                    <label for="edtnome">NOME | NOME FANTASIA</label>
-                                                                    <input autofocus type="text" name="edtnome"
-                                                                        class="form-control" id="edtnome"
-                                                                        placeholder="Digite o nome da pessoa ou empresa!">
+            <form method="post" id="frmproprio" name="frmproprio" enctype='multipart/form-data'>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header p-2">
+                                                    <ul class="nav nav-pills">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" href="#activity"
+                                                                data-toggle="tab">
+                                                                <i class="fas fa-building"> </i> Dados do próprio
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#endereco" data-toggle="tab">
+                                                                <i class="fas fa-map-marker-alt"> </i> Dados de endereço
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#contato" data-toggle="tab">
+                                                                <i class="fas fa-id-badge"> </i> Dados de contato
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="tab-content">
+                                                        <div class="active tab-pane" id="activity">
+                                                            <h3>Dados de próprio</h3>
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="form-group col-lg-6 col-md-6">
+                                                                        <label for="edtnome">NOME | NOME
+                                                                            FANTASIA</label>
+                                                                        <input autofocus type="text" name="edtnome"
+                                                                            class="form-control" id="edtnome"
+                                                                            placeholder="Digite o nome da pessoa ou empresa!">
+                                                                    </div>
+                                                                    <div class="form-group col-lg-6 col-md-6">
+                                                                        <label for="edtsobrenome">SOBRE NOME | RAZÃO
+                                                                            SOCIAL</label>
+                                                                        <input type="text" name="edtsobrenome"
+                                                                            class="form-control" id="edtsobrenome"
+                                                                            placeholder="Digite o sobre nome ou razão social!">
+                                                                    </div>
                                                                 </div>
-                                                                <div class="form-group col-lg-6 col-md-6">
-                                                                    <label for="edtsobrenome">SOBRE NOME | RAZÃO
-                                                                        SOCIAL</label>
-                                                                    <input type="text" name="edtsobrenome"
-                                                                        class="form-control" id="edtsobrenome"
-                                                                        placeholder="Digite o sobre nome ou razão social!">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-lg-4 col-md-4">
-                                                                    <label for="edtcpf">CPF | CNPJ</label>
-                                                                    <input type="text" name="edtcpf"
-                                                                        class="form-control" id="edtcpf"
-                                                                        placeholder="Digite o CPF ou CNPJ da pessoa!">
-                                                                </div>
-                                                                <div class="form-group col-lg-4 col-md-4">
-                                                                    <label for="edtrg">RG | IE</label>
-                                                                    <input type="text" name="edtrg" class="form-control"
-                                                                        id="edtrg"
-                                                                        placeholder="Digite o RG ou o IE da pessoa!">
-                                                                </div>
-                                                                <div class="form-group col-lg-4 col-md-4">
-                                                                    <label for="edtnascimento">NACIMENTO |
-                                                                        FUNDAÇÃO</label>
-                                                                    <input type="text" name="edtnascimento"
-                                                                        class="form-control" id="edtnascimento"
-                                                                        placeholder="Informe o nascimento ou fundação!">
+                                                                <div class="row">
+                                                                    <div class="form-group col-lg-4 col-md-4">
+                                                                        <label for="edtcpf">CPF | CNPJ</label>
+                                                                        <input type="text" name="edtcpf"
+                                                                            class="form-control" id="edtcpf"
+                                                                            placeholder="Digite o CPF ou CNPJ da pessoa!">
+                                                                    </div>
+                                                                    <div class="form-group col-lg-4 col-md-4">
+                                                                        <label for="edtrg">RG | IE</label>
+                                                                        <input type="text" name="edtrg"
+                                                                            class="form-control" id="edtrg"
+                                                                            placeholder="Digite o RG ou o IE da pessoa!">
+                                                                    </div>
+                                                                    <div class="form-group col-lg-4 col-md-4">
+                                                                        <label for="edtnascimento">NACIMENTO |
+                                                                            FUNDAÇÃO</label>
+                                                                        <input type="text" name="edtnascimento"
+                                                                            class="form-control" id="edtnascimento"
+                                                                            placeholder="Informe o nascimento ou fundação!">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane" id="endereco">
-                                                        <h3>Dados de endereço</h3>
-                                                    </div>
+                                                        <div class="tab-pane" id="endereco">
+                                                            <h3>Dados de endereço</h3>
+                                                        </div>
 
-                                                    <div class="tab-pane" id="contato">
-                                                        <h3>Dados de contato</h3>
+                                                        <div class="tab-pane" id="contato">
+                                                            <h3>Dados de contato</h3>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="btn-group">
-                                        <a href="{{lista}}" class="btn btn-warning">
-                                            <i class="fas fa-chevron-left"> </i> Voltar
-                                        </a>
-                                        <button id="btn-salvar" name="btn-salvar" type="button" class="btn btn-success">
-                                            <i class="fas fa-save"> </i> Salvar
-                                        </button>
+                                    <div class="card-footer">
+                                        <div class="btn-group">
+                                            <a href="{{lista}}" class="btn btn-warning">
+                                                <i class="fas fa-chevron-left"> </i> Voltar
+                                            </a>
+                                            <button id="btn-salvar" name="btn-salvar" type="button"
+                                                class="btn btn-success">
+                                                <i class="fas fa-save"> </i> Salvar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-            </section>
+                </section>
             </form>
         </div>
         {% include "site/footer.html" %}

@@ -44,15 +44,14 @@ class Proprio extends Base
             ]
         );
     }
+
     public function controle($request, $response)
     {
-        $response->withStatus(400);
-        //pode funcionar assim
-        $body = file_get_contents("php://input");
-        //pode funcionar assim
-        //$body = filter_input(INPUT_POST, 'dado', FILTER_SANITIZE_STRING);
-        header("Content-Type: application/json"); //setting header before sending the JSON response back to the iPhone
-        echo ($body); // Converting the request body into JSON format and sending it as a response back to the iPhone. After execution of this step I'm getting the above weird format data as a response on iPhone.
-        die;
+        //VERIFICAMOS SE EXISTE A REQUISIÇÃO POST
+        if (isset($_POST) and !empty($_POST)) :
+            //CAPTURAMOS OS DADOS DO FORM
+            $nome = filter_input(INPUT_POST, 'edtnome', FILTER_SANITIZE_STRING);
+            die;
+        endif;
     }
 }
