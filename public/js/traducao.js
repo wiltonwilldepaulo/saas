@@ -1,13 +1,12 @@
-$(document).ready(function () {
+$(function () {
     $('#tabela').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
         "ordering": true,
         "info": true,
-        "autoWidth": true,
+        "autoWidth": false,
         "responsive": true,
-        "bFilter": true,
         language: {
             "sProcessing": "Processando...",
             "sLengthMenu": "Mostrar _MENU_ registros",

@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\database\models\Empresa;
+
 class Proprio extends Base
 {
     public function listaproprio($request, $response)
     {
-        //$Proprio = new Empresa;
-        $proprio = []; //$Proprio->findAll();
+        $Empresa = new Empresa();
+        $proprio = $Empresa->find();
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
