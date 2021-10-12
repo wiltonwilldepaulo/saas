@@ -41,6 +41,7 @@
                                     <th>CPF | CNPJ</th>
                                     <th>RG | IE</th>
                                     <th>NASCIMENTO | FUNDAÇÃO</th>
+                                    <th>AÇÃO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,14 @@
                                     <td>{{proprios.cpf_cnpj}}</td>
                                     <td>{{proprios.rg_ie}}</td>
                                     <td>{{proprios.nascimento_fundacao}}</td>
+                                    <td>
+                                        <a href="{{ (cadastro ~ '?id=' ~ proprios.id) }}" class="btn btn-warning">
+                                            <i class="fas fa-edit"> </i> Editar
+                                        </a>
+                                        <button class="btn btn-danger">
+                                            <i class="fas fa-trash"> </i> Excluir
+                                        </button>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
