@@ -7,7 +7,12 @@ $(function () {
         "info": true,
         "autoWidth": false,
         "responsive": true,
-        "buttons": ["excel", "pdf", "print", "colvis"],
+        "buttons": [
+            { extend: 'excel', className: 'btn btn-info' },
+            { extend: 'pdf', className: 'btn btn-info' },
+            { extend: 'print', className: 'btn btn-info' },
+            { extend: 'colvis', className: 'btn btn-info' }
+        ],
         language: {
             "searchPlaceholder": "Digite sua pesquisa...",
             "emptyTable": "Nenhum registro encontrado",
