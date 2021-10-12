@@ -7,6 +7,7 @@ $(function () {
         "info": true,
         "autoWidth": false,
         "responsive": true,
+        "buttons": ["excel", "pdf", "print", "colvis"],
         language: {
             "sProcessing": "Processando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -22,6 +23,6 @@ $(function () {
                 "sLast": "Último"
             }
         }
-    });
+    }).buttons().container().appendTo('#tabela_wrapper .col-md-6:eq(0)');
     $('div.dataTables_wrapper div.dataTables_filter input').attr("size", "30%");
 });
