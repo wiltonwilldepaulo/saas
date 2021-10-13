@@ -6,10 +6,15 @@ use app\database\models\Empresa;
 
 class Proprio extends Base
 {
+    private $proprio;
+
+    public function __construct()
+    {
+        $this->proprio = new Empresa();
+    }
     public function listaproprio($request, $response)
     {
-        $Empresa = new Empresa();
-        $proprio = $Empresa->find();
+        $proprio = $this->proprio->find();
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
@@ -28,8 +33,14 @@ class Proprio extends Base
     }
     public function proprio($request, $response)
     {
-        //$Proprio = new Empresa;
-        $proprio = []; //$Proprio->findAll();
+        if (isset($_GET["id"]) and !empty($_GET["id"])) :
+            $id = $_GET["id"];
+            $proprio = $this->proprio->findBy('id', $id, false);
+            $acao = "e";
+        else :
+            $proprio = [];
+            $acao = "c";
+        endif;
         //RETORNAMOS A VIEW 
         return $this->getTwig()->render(
             $response,
@@ -39,6 +50,7 @@ class Proprio extends Base
                 "nome" => "WILTON WILL DE PAULO",
                 "logo" => "/img/icon.png",
                 "proprio" => $proprio,
+                "acao" => $acao,
                 "home" => "http://localhost",
                 "lista" => "http://localhost/listaproprio",
                 "base_url" => BASE_URL,

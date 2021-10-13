@@ -52,7 +52,7 @@
                                     <td>{{proprios.sobrenome_razao}}</td>
                                     <td>{{proprios.cpf_cnpj}}</td>
                                     <td>{{proprios.rg_ie}}</td>
-                                    <td>{{proprios.nascimento_fundacao}}</td>
+                                    <td>{{proprios.nascimento_fundacao|date("d/m/Y")}}</td>
                                     <td>
                                         <a href="{{ (cadastro ~ '?id=' ~ proprios.id) }}" class="btn btn-warning">
                                             <i class="fas fa-edit"> </i> Editar

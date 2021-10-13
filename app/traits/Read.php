@@ -29,7 +29,9 @@ trait Read
     public function findBy($field, $value, $fetchAll = true)
     {
         try {
-            $prepared = $this->connection->prepared("select * from {$this->table} where {$field} = :{$field}");
+            //MONTAMOS A ESTRUTURA DO SQL
+            $sql = "select * from {$this->table} where {$field} = :{$field}";
+            $prepared = $this->connection->prepare($sql);
             $prepared->bindValue(":{$field}", $value);
             $prepared->execute();
             //CASO O VALOR PADRÃO DO PARAMETRO SEJA TRUE RETORNA TODOSS OS REGISTRO DO BANCO.
