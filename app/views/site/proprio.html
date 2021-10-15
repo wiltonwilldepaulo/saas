@@ -49,18 +49,20 @@
                                                 <div class="card-header p-2">
                                                     <ul class="nav nav-pills">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" href="#activity"
+                                                            <a class="nav-link active" href="#activity" id="tb-activity"
                                                                 data-toggle="tab">
                                                                 <i class="fas fa-building"> </i> Dados do próprio
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" href="#endereco" data-toggle="tab">
+                                                            <a class="nav-link" href="#endereco" id="tb-endereco"
+                                                                data-toggle="tab">
                                                                 <i class="fas fa-map-marker-alt"> </i> Dados de endereço
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" href="#contato" data-toggle="tab">
+                                                            <a class="nav-link" href="#contato" id="tb-contato"
+                                                                data-toggle="tab">
                                                                 <i class="fas fa-id-badge"> </i> Dados de contato
                                                             </a>
                                                         </li>
@@ -78,7 +80,7 @@
                                                                         <input autofocus type="text" name="edtnome"
                                                                             class="form-control" id="edtnome"
                                                                             placeholder="Digite o nome da pessoa ou empresa!"
-                                                                            value="{{proprio.nome_fantasia}}">
+                                                                            value="{{proprio.nome_fantasia}}" required>
                                                                     </div>
                                                                     <div class="form-group col-lg-6 col-md-6">
                                                                         <label for="edtsobrenome">SOBRE NOME | RAZÃO
@@ -86,7 +88,8 @@
                                                                         <input type="text" name="edtsobrenome"
                                                                             class="form-control" id="edtsobrenome"
                                                                             placeholder="Digite o sobre nome ou razão social!"
-                                                                            value="{{proprio.sobrenome_razao}}">
+                                                                            value="{{proprio.sobrenome_razao}}"
+                                                                            required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -95,14 +98,14 @@
                                                                         <input type="text" name="edtcpf"
                                                                             class="form-control" id="edtcpf"
                                                                             placeholder="Digite o CPF ou CNPJ da pessoa!"
-                                                                            value="{{proprio.cpf_cnpj}}">
+                                                                            value="{{proprio.cpf_cnpj}}" required>
                                                                     </div>
                                                                     <div class="form-group col-lg-4 col-md-4">
                                                                         <label for="edtrg">RG | IE</label>
                                                                         <input type="text" name="edtrg"
                                                                             class="form-control" id="edtrg"
                                                                             placeholder="Digite o RG ou o IE da pessoa!"
-                                                                            value="{{proprio.rg_ie}}">
+                                                                            value="{{proprio.rg_ie}}" required>
                                                                     </div>
                                                                     <div class="form-group col-lg-4 col-md-4">
                                                                         <label for="edtnascimento">NACIMENTO |
@@ -110,7 +113,36 @@
                                                                         <input type="text" name="edtnascimento"
                                                                             class="form-control" id="edtnascimento"
                                                                             placeholder="Informe o nascimento ou fundação!"
-                                                                            value="{{proprio.nascimento_fundacao|date("d/m/Y")}}">
+                                                                            value="{{proprio.nascimento_fundacao|date("
+                                                                            d/m/Y")}}" required>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label for="edticone">Selecione o logo da
+                                                                                empresa</label>
+                                                                            <input data-language="pt-BR"
+                                                                                data-max-file-size="2MB"
+                                                                                data-theme="explorer-fas"
+                                                                                data-show-preview="true"
+                                                                                data-show-remove="true"
+                                                                                data-show-upload="false"
+                                                                                data-min-file-count="1" name="edtlogo"
+                                                                                id="edtlogo" type="file" required /> 
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-sm-6">
+                                                                        <label for="edticone">Selecione o icone da
+                                                                            empresa</label>
+                                                                        <div class="form-group">
+                                                                            <input data-language="pt-BR"
+                                                                                data-max-file-size="2MB"
+                                                                                data-theme="explorer-fas"
+                                                                                data-show-preview="true"
+                                                                                data-show-remove="true"
+                                                                                data-show-upload="false"
+                                                                                data-min-file-count="1" name="edticone"
+                                                                                id="edticone" type="file" required />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

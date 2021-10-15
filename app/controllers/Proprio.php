@@ -64,7 +64,8 @@ class Proprio extends Base
         //VERIFICAMOS SE EXISTE A REQUISIÇÃO POST
         if (isset($_POST) and !empty($_POST)) :
             //CAPTURAMOS OS DADOS DO FORM
-            $nome = filter_input(INPUT_POST, 'edtnome', FILTER_SANITIZE_STRING);
+            $foto = $_FILES["edtlogo"];
+            var_dump($foto);
             die;
         endif;
     }
