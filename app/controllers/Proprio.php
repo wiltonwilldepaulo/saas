@@ -63,9 +63,29 @@ class Proprio extends Base
     {
         //VERIFICAMOS SE EXISTE A REQUISIÇÃO POST
         if (isset($_POST) and !empty($_POST)) :
+            $this->proprio = new Empresa();
             //CAPTURAMOS OS DADOS DO FORM
-            $foto = $_FILES["edtlogo"];
-            var_dump($foto);
+            $acao                = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
+            $nome_fantasia       = filter_input(INPUT_POST, 'edtnome', FILTER_SANITIZE_STRING);
+            $sobrenome_razao     = filter_input(INPUT_POST, 'edtsobrenome', FILTER_SANITIZE_STRING);
+            $cpf_cnpj            = filter_input(INPUT_POST, 'edtcpf', FILTER_SANITIZE_STRING);
+            $rg_ie               = filter_input(INPUT_POST, 'edtrg', FILTER_SANITIZE_STRING);
+            $nascimento_fundacao = filter_input(INPUT_POST, 'edtnascimento', FILTER_SANITIZE_STRING);
+
+            $arrayValues = array(
+                "nome_fantasia"       => $nome_fantasia,
+                "sobrenome_razao"     => $sobrenome_razao,
+                "cpf_cnpj"            => $cpf_cnpj,
+                "rg_ie"               => $rg_ie,
+                "nascimento_fundacao" => $nascimento_fundacao,
+                "tipo_pessoa" => 0
+            );
+            switch ($acao):
+                case 'c':
+                    $created = $this->proprio->create($arrayValues);
+                    echo $created;
+                    break;
+            endswitch;
             die;
         endif;
     }
