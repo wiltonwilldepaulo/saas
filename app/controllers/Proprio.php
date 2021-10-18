@@ -2,15 +2,18 @@
 
 namespace app\controllers;
 
+use app\database\models\Arquivo;
 use app\database\models\Empresa;
 
 class Proprio extends Base
 {
     private $proprio;
+    private $arquivo;
 
     public function __construct()
     {
         $this->proprio = new Empresa();
+        $this->arquivo = new Arquivo();
     }
     public function listaproprio($request, $response)
     {
@@ -64,6 +67,7 @@ class Proprio extends Base
         //VERIFICAMOS SE EXISTE A REQUISIÇÃO POST
         if (isset($_POST) and !empty($_POST)) :
             $this->proprio = new Empresa();
+            $this->arquivo = new Arquivo();
             //CAPTURAMOS OS DADOS DO FORM
             $acao                = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
             $nome_fantasia       = filter_input(INPUT_POST, 'edtnome', FILTER_SANITIZE_STRING);
@@ -71,9 +75,37 @@ class Proprio extends Base
             $cpf_cnpj            = filter_input(INPUT_POST, 'edtcpf', FILTER_SANITIZE_STRING);
             $rg_ie               = filter_input(INPUT_POST, 'edtrg', FILTER_SANITIZE_STRING);
             $nascimento_fundacao = filter_input(INPUT_POST, 'edtnascimento', FILTER_SANITIZE_STRING);
-            $logo                = $_FILES['edtlogo'];
+            //SELECIONAMOS AS IMAGENS
+            //$logo                = $_FILES['edtlogo'];
             $icone               = $_FILES['edticone'];
 
+            $logo = fopen($_FILES['edtlogo']['tmp_name'], "rb");
+            $conteudo = fread($logo, $_FILES['edtlogo']['size']);
+            $conteudo = addslashes($conteudo);
+            fclose($logo);
+
+            //TRANFOMAMOS AS IMAGENS EM DADOS BINARIO 
+            //$conteudo_logo  = file_get_contents($logo['tmp_name']);
+            $conteudo_icone = file_get_contents($icone['tmp_name']);
+
+            $arrayValuesFileLogo = array(
+                "diretorio"    => "teste",
+                "extensao"     => "teste",
+                "arquivo"      => $conteudo,
+                "id_pessoa"    => 36,
+                "nome_arquivo" => "teste"
+            );
+            $arrayValuesFileIcone = array(
+                "diretorio"    => "teste",
+                "extensao"     => "teste",
+                //"arquivo"      => $conteudo_icone,
+                "id_pessoa"    => 36,
+                "nome_arquivo" => "teste"
+            );
+            $icone_success = $this->arquivo->create($arrayValuesFileIcone);
+            $logo_success = $this->arquivo->create($arrayValuesFileLogo);
+            echo $icone_success;
+            echo $logo_success;
             $arrayValues = array(
                 "nome_fantasia"       => $nome_fantasia,
                 "sobrenome_razao"     => $sobrenome_razao,
