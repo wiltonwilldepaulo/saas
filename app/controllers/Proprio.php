@@ -71,6 +71,8 @@ class Proprio extends Base
             $cpf_cnpj            = filter_input(INPUT_POST, 'edtcpf', FILTER_SANITIZE_STRING);
             $rg_ie               = filter_input(INPUT_POST, 'edtrg', FILTER_SANITIZE_STRING);
             $nascimento_fundacao = filter_input(INPUT_POST, 'edtnascimento', FILTER_SANITIZE_STRING);
+            $logo                = $_FILES['edtlogo'];
+            $icone               = $_FILES['edticone'];
 
             $arrayValues = array(
                 "nome_fantasia"       => $nome_fantasia,
