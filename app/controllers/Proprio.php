@@ -51,7 +51,8 @@ class Proprio extends Base
             [
                 "titulo" => "Unesc - cadastro de empresa",
                 "nome" => "WILTON WILL DE PAULO",
-                "logo" => "/img/icon.png",
+                "logo" => LOGO_DIR,
+                "icone" => ICONE_DIR,
                 "proprio" => $proprio,
                 "acao" => $acao,
                 "home" => "http://localhost",
@@ -94,17 +95,19 @@ class Proprio extends Base
             $ext_logo = pathinfo($logo["name"], PATHINFO_EXTENSION);
             //PEGAMOS A EXTENSÃO DO ICONE
             $ext_icone = pathinfo($icone["name"], PATHINFO_EXTENSION);
-            //SALVAMOS OS DADOS DA PESSOA NO BANCO DE DADOS
-            $arrayValues = array(
-                "nome_fantasia"       => $nome_fantasia,
-                "sobrenome_razao"     => $sobrenome_razao,
-                "cpf_cnpj"            => $cpf_cnpj,
-                "rg_ie"               => $rg_ie,
-                "nascimento_fundacao" => $nascimento_fundacao,
-                "tipo_pessoa" => 0
-            );
             switch ($acao):
                 case 'c':
+                    //SALVAMOS OS DADOS DA PESSOA NO BANCO DE DADOS
+                    $arrayValues = array(
+                        "nome_fantasia"       => $nome_fantasia,
+                        "sobrenome_razao"     => $sobrenome_razao,
+                        "cpf_cnpj"            => $cpf_cnpj,
+                        "rg_ie"               => $rg_ie,
+                        "nascimento_fundacao" => $nascimento_fundacao,
+                        "data_cadastro"       => date("Y-m-d"),
+                        "data_atualizacao"    => date("Y-m-d"),
+                        "tipo_pessoa" => 0
+                    );
                     $created = $this->proprio->create($arrayValues);
                     $id_proprio = $this->proprio->findLastId("id");
                     //MONTAMOS UM ARRAY COM OS DADOS DO ARUIVO DO LOGO.
@@ -112,6 +115,7 @@ class Proprio extends Base
                         "diretorio"    => $dir_logo . DIRECTORY_SEPARATOR . $nome_logo . "." . $ext_logo,
                         "extensao"     => "." . $ext_logo,
                         "id_pessoa"    => $id_proprio,
+                        "titulo"       => "logo",
                         "nome_arquivo" => $nome_logo . "." . $ext_logo
                     );
                     //MONTAMOS UM ARRAY COM OS DADOS DO ARUIVO DO ICONE.
@@ -119,13 +123,20 @@ class Proprio extends Base
                         "diretorio"    => $dir_icone . DIRECTORY_SEPARATOR . $nome_icone . "." . $ext_icone,
                         "extensao"     => "." . $ext_icone,
                         "id_pessoa"    => $id_proprio,
+                        "titulo"       => "icone",
                         "nome_arquivo" => $nome_icone . "." . $ext_icone
                     );
+                    move_uploaded_file($logo['tmp_name'], $dir_logo . DIRECTORY_SEPARATOR . $nome_logo . "." . $ext_logo);
+                    move_uploaded_file($icone['tmp_name'], $dir_icone . DIRECTORY_SEPARATOR . $nome_icone . "." . $ext_icone);
                     //SALVAMOS OS DADOS SO ICONE NO BANCO DE DADOS
                     $icone_success = $this->arquivo->create($arrayValuesIcone);
                     //SALVAMOS OS DADOS SO LOGO NO BANCO DE DADOS
                     $logo_success = $this->arquivo->create($arrayValuesLogo);
-                    echo $created;
+                    if ($icone_success and $logo_success and $created) :
+                        echo $id_proprio;
+                    else :
+                        echo "false";
+                    endif;
                     break;
             endswitch;
             die;

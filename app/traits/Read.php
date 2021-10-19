@@ -2,6 +2,7 @@
 
 namespace app\traits;
 
+use PDO;
 use PDOException;
 
 trait Read
@@ -35,7 +36,7 @@ trait Read
             $prepared->bindValue(":{$field}", $value);
             $prepared->execute();
             //CASO O VALOR PADRÃO DO PARAMETRO SEJA TRUE RETORNA TODOSS OS REGISTRO DO BANCO.
-            return $fetchAll ? $prepared->fetchAll() : $prepared->fetch();
+            return $fetchAll ? $prepared->fetchAll(PDO::FETCH_OBJ) : $prepared->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             var_dump($e->getMessage());
         }

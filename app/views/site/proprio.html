@@ -14,7 +14,7 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{logo}}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{icone}}" alt="AdminLTELogo" height="60" width="60">
         </div>
         {% include "site/admin_top_menu.html" %}
         {% include "site/admin_left_menu.html" %}
@@ -23,6 +23,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
+                            <img src="{{logo}}">
                             <h1 class="m-0">Controle de próprio</h1><br>
                         </div>
                         <div class="col-sm-6">
@@ -92,7 +93,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="form-group col-lg-12 col-md-12">
+                                                                    <div class="form-group col-lg-4 col-md-4">
                                                                         <label for="nome_fantasia">NOME | NOME
                                                                             FANTASIA</label>
                                                                         <input autofocus type="text"
@@ -101,14 +102,14 @@
                                                                             placeholder="Digite o nome da pessoa ou empresa!"
                                                                             value="{{proprio.nome_fantasia}}" required>
                                                                     </div>
-                                                                    <div class="form-group col-lg-6 col-md-6">
+                                                                    <div class="form-group col-lg-3 col-md-3">
                                                                         <label for="edtrg">RG | IE</label>
                                                                         <input type="text" name="edtrg"
                                                                             class="form-control" id="edtrg"
                                                                             placeholder="Digite o RG ou o IE da pessoa!"
                                                                             value="{{proprio.rg_ie}}" required>
                                                                     </div>
-                                                                    <div class="form-group col-lg-6 col-md-6">
+                                                                    <div class="form-group col-lg-3 col-md-3">
                                                                         <label for="data_inicio_atividade">NACIMENTO |
                                                                             FUNDAÇÃO</label>
                                                                         <input type="text" name="data_inicio_atividade"
