@@ -76,34 +76,23 @@ class Proprio extends Base
             $rg_ie               = filter_input(INPUT_POST, 'edtrg', FILTER_SANITIZE_STRING);
             $nascimento_fundacao = filter_input(INPUT_POST, 'edtnascimento', FILTER_SANITIZE_STRING);
             //SELECIONAMOS AS IMAGENS
-            //$logo                = $_FILES['edtlogo'];
-            $icone               = $_FILES['edticone'];
+            $icone    = $_FILES['edticone'];
+            $logo     = $_FILES['edtlogo'];
 
-            $logo = fopen($_FILES['edtlogo']['tmp_name'], "rb");
-            $conteudo = fread($logo, $_FILES['edtlogo']['size']);
-            $conteudo = addslashes($conteudo);
-            fclose($logo);
-
-            //TRANFOMAMOS AS IMAGENS EM DADOS BINARIO 
-            //$conteudo_logo  = file_get_contents($logo['tmp_name']);
-            $conteudo_icone = file_get_contents($icone['tmp_name']);
-
-            $arrayValuesFileLogo = array(
+            $arrayValuesLogo = array(
                 "diretorio"    => "teste",
                 "extensao"     => "teste",
-                "arquivo"      => $conteudo,
                 "id_pessoa"    => 36,
                 "nome_arquivo" => "teste"
             );
-            $arrayValuesFileIcone = array(
+            $arrayValuesIcone = array(
                 "diretorio"    => "teste",
                 "extensao"     => "teste",
-                //"arquivo"      => $conteudo_icone,
                 "id_pessoa"    => 36,
                 "nome_arquivo" => "teste"
             );
-            $icone_success = $this->arquivo->create($arrayValuesFileIcone);
-            $logo_success = $this->arquivo->create($arrayValuesFileLogo);
+            $icone_success = $this->arquivo->create($arrayValuesIcone);
+            $logo_success = $this->arquivo->create($arrayValuesLogo);
             echo $icone_success;
             echo $logo_success;
             $arrayValues = array(

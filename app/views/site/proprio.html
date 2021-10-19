@@ -74,44 +74,46 @@
                                                             <h3>Dados de próprio</h3>
                                                             <div class="card-body">
                                                                 <div class="row">
-                                                                    <div class="form-group col-lg-6 col-md-6">
-                                                                        <label for="edtnome">NOME | NOME
-                                                                            FANTASIA</label>
-                                                                        <input autofocus type="text" name="edtnome"
-                                                                            class="form-control" id="edtnome"
-                                                                            placeholder="Digite o nome da pessoa ou empresa!"
-                                                                            value="{{proprio.nome_fantasia}}" required>
+                                                                    <div class="form-group col-lg-4 col-md-4">
+                                                                        <label for="cnpj">CPF | CNPJ</label>
+                                                                        <input type="text" name="cnpj"
+                                                                            class="form-control" id="cnpj"
+                                                                            placeholder="Digite o CPF ou CNPJ da pessoa!"
+                                                                            value="{{proprio.cpf_cnpj}}" required>
                                                                     </div>
-                                                                    <div class="form-group col-lg-6 col-md-6">
-                                                                        <label for="edtsobrenome">SOBRE NOME | RAZÃO
+                                                                    <div class="form-group col-lg-8 col-md-8">
+                                                                        <label for="razao_social">SOBRE NOME | RAZÃO
                                                                             SOCIAL</label>
-                                                                        <input type="text" name="edtsobrenome"
-                                                                            class="form-control" id="edtsobrenome"
+                                                                        <input type="text" name="razao_social"
+                                                                            class="form-control" id="razao_social"
                                                                             placeholder="Digite o sobre nome ou razão social!"
                                                                             value="{{proprio.sobrenome_razao}}"
                                                                             required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="form-group col-lg-4 col-md-4">
-                                                                        <label for="edtcpf">CPF | CNPJ</label>
-                                                                        <input type="text" name="edtcpf"
-                                                                            class="form-control" id="edtcpf"
-                                                                            placeholder="Digite o CPF ou CNPJ da pessoa!"
-                                                                            value="{{proprio.cpf_cnpj}}" required>
+                                                                    <div class="form-group col-lg-12 col-md-12">
+                                                                        <label for="nome_fantasia">NOME | NOME
+                                                                            FANTASIA</label>
+                                                                        <input autofocus type="text"
+                                                                            name="nome_fantasia" class="form-control"
+                                                                            id="nome_fantasia"
+                                                                            placeholder="Digite o nome da pessoa ou empresa!"
+                                                                            value="{{proprio.nome_fantasia}}" required>
                                                                     </div>
-                                                                    <div class="form-group col-lg-4 col-md-4">
+                                                                    <div class="form-group col-lg-6 col-md-6">
                                                                         <label for="edtrg">RG | IE</label>
                                                                         <input type="text" name="edtrg"
                                                                             class="form-control" id="edtrg"
                                                                             placeholder="Digite o RG ou o IE da pessoa!"
                                                                             value="{{proprio.rg_ie}}" required>
                                                                     </div>
-                                                                    <div class="form-group col-lg-4 col-md-4">
-                                                                        <label for="edtnascimento">NACIMENTO |
+                                                                    <div class="form-group col-lg-6 col-md-6">
+                                                                        <label for="data_inicio_atividade">NACIMENTO |
                                                                             FUNDAÇÃO</label>
-                                                                        <input type="text" name="edtnascimento"
-                                                                            class="form-control" id="edtnascimento"
+                                                                        <input type="text" name="data_inicio_atividade"
+                                                                            class="form-control"
+                                                                            id="data_inicio_atividade"
                                                                             placeholder="Informe o nascimento ou fundação!"
                                                                             value="{{proprio.nascimento_fundacao|date("
                                                                             d/m/Y")}}" required>
