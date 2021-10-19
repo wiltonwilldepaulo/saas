@@ -70,31 +70,31 @@ class Proprio extends Base
             $this->arquivo = new Arquivo();
             //CAPTURAMOS OS DADOS DO FORM
             $acao                = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
-            $nome_fantasia       = filter_input(INPUT_POST, 'edtnome', FILTER_SANITIZE_STRING);
-            $sobrenome_razao     = filter_input(INPUT_POST, 'edtsobrenome', FILTER_SANITIZE_STRING);
-            $cpf_cnpj            = filter_input(INPUT_POST, 'edtcpf', FILTER_SANITIZE_STRING);
+            $nome_fantasia       = filter_input(INPUT_POST, 'nome_fantasia', FILTER_SANITIZE_STRING);
+            $sobrenome_razao     = filter_input(INPUT_POST, 'razao_social', FILTER_SANITIZE_STRING);
+            $cpf_cnpj            = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_STRING);
             $rg_ie               = filter_input(INPUT_POST, 'edtrg', FILTER_SANITIZE_STRING);
-            $nascimento_fundacao = filter_input(INPUT_POST, 'edtnascimento', FILTER_SANITIZE_STRING);
+            $nascimento_fundacao = filter_input(INPUT_POST, 'data_inicio_atividade', FILTER_SANITIZE_STRING);
             //SELECIONAMOS AS IMAGENS
             $icone    = $_FILES['edticone'];
             $logo     = $_FILES['edtlogo'];
-
-            $arrayValuesLogo = array(
-                "diretorio"    => "teste",
-                "extensao"     => "teste",
-                "id_pessoa"    => 36,
-                "nome_arquivo" => "teste"
-            );
-            $arrayValuesIcone = array(
-                "diretorio"    => "teste",
-                "extensao"     => "teste",
-                "id_pessoa"    => 36,
-                "nome_arquivo" => "teste"
-            );
-            $icone_success = $this->arquivo->create($arrayValuesIcone);
-            $logo_success = $this->arquivo->create($arrayValuesLogo);
-            echo $icone_success;
-            echo $logo_success;
+            $dir_logo  = ROOT . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . preg_replace('/[^0-9]/', '', $cpf_cnpj) . DIRECTORY_SEPARATOR .  "logo";
+            $dir_icone  = ROOT . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .  preg_replace('/[^0-9]/', '', $cpf_cnpj) . DIRECTORY_SEPARATOR .  "icone";
+            if (!file_exists($dir_logo)) :
+                mkdir($dir_logo, 0777, true);
+            endif;
+            if (!file_exists($dir_icone)) :
+                mkdir($dir_icone, 0777, true);
+            endif;
+            //GERAMOS UM NOME ÚNICO PARA O LOGO
+            $nome_logo = md5(uniqid(time()));
+            //GERAMOS UM NOME ÚNICO PARA O ICONE
+            $nome_icone = md5(uniqid(time()));
+            //PEGAMOS A EXTENSÃO DO LOGO
+            $ext_logo = pathinfo($logo["name"], PATHINFO_EXTENSION);
+            //PEGAMOS A EXTENSÃO DO ICONE
+            $ext_icone = pathinfo($icone["name"], PATHINFO_EXTENSION);
+            //SALVAMOS OS DADOS DA PESSOA NO BANCO DE DADOS
             $arrayValues = array(
                 "nome_fantasia"       => $nome_fantasia,
                 "sobrenome_razao"     => $sobrenome_razao,
@@ -106,6 +106,25 @@ class Proprio extends Base
             switch ($acao):
                 case 'c':
                     $created = $this->proprio->create($arrayValues);
+                    $id_proprio = $this->proprio->findLastId("id");
+                    //MONTAMOS UM ARRAY COM OS DADOS DO ARUIVO DO LOGO.
+                    $arrayValuesLogo = array(
+                        "diretorio"    => $dir_logo . DIRECTORY_SEPARATOR . $nome_logo . "." . $ext_logo,
+                        "extensao"     => "." . $ext_logo,
+                        "id_pessoa"    => $id_proprio,
+                        "nome_arquivo" => $nome_logo . "." . $ext_logo
+                    );
+                    //MONTAMOS UM ARRAY COM OS DADOS DO ARUIVO DO ICONE.
+                    $arrayValuesIcone = array(
+                        "diretorio"    => $dir_icone . DIRECTORY_SEPARATOR . $nome_icone . "." . $ext_icone,
+                        "extensao"     => "." . $ext_icone,
+                        "id_pessoa"    => $id_proprio,
+                        "nome_arquivo" => $nome_icone . "." . $ext_icone
+                    );
+                    //SALVAMOS OS DADOS SO ICONE NO BANCO DE DADOS
+                    $icone_success = $this->arquivo->create($arrayValuesIcone);
+                    //SALVAMOS OS DADOS SO LOGO NO BANCO DE DADOS
+                    $logo_success = $this->arquivo->create($arrayValuesLogo);
                     echo $created;
                     break;
             endswitch;

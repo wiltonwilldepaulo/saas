@@ -40,4 +40,20 @@ trait Read
             var_dump($e->getMessage());
         }
     }
+
+    /**
+     * RETORNA O ULTIMO ID GERADO
+     *
+     * @return  self
+     */
+    public function findLastId($field)
+    {
+        try {
+            $query = $this->connection->query("select max({$field}) as {$field} from {$this->table}");
+            $data = $query->fetch();
+            return $data[$field];
+        } catch (PDOException $e) {
+            var_dump($e->getMessage());
+        }
+    }
 }
