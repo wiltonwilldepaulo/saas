@@ -157,8 +157,14 @@ class Proprio extends Base
                             "id" => $id
                         )
                     );
+                    //RECEBEMOS O RESULTADO DA ATUALIZAÇÃO
                     $update = $this->proprio->update($arrayValues);
-                    var_dump($update);
+                    //VERIFICAMOS SE O UPDATE DEU CERTO
+                    if ($update) :
+                        echo "true";
+                    else :
+                        echo "false";
+                    endif;
                     break;
             endswitch;
             die;
