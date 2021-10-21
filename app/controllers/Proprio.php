@@ -51,8 +51,8 @@ class Proprio extends Base
             [
                 "titulo" => "Unesc - cadastro de empresa",
                 "nome" => "WILTON WILL DE PAULO",
-                "logo" => LOGO_DIR,
-                "icone" => ICONE_DIR,
+                "logo" => "http://localhost/img/34556785000103/logo/68ca94edbc9a99536e146c48b5b27472.png",
+                "icone" => "http://localhost/img/34556785000103/icone/21f4df246dc7602141a5b0541fb0b92c.png",
                 "proprio" => $proprio,
                 "acao" => $acao,
                 "home" => "http://localhost",
@@ -70,6 +70,7 @@ class Proprio extends Base
             $this->proprio = new Empresa();
             $this->arquivo = new Arquivo();
             //CAPTURAMOS OS DADOS DO FORM
+            $id                  = filter_input(INPUT_POST, 'edtid', FILTER_SANITIZE_STRING);
             $acao                = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
             $nome_fantasia       = filter_input(INPUT_POST, 'nome_fantasia', FILTER_SANITIZE_STRING);
             $sobrenome_razao     = filter_input(INPUT_POST, 'razao_social', FILTER_SANITIZE_STRING);
@@ -137,6 +138,27 @@ class Proprio extends Base
                     else :
                         echo "false";
                     endif;
+                    break;
+                case 'e':
+                    //VERIFICAMOS SE A AÇÃO É UMA EDIÇÃO;
+                    //SALVAMOS OS DADOS DA PESSOA NO BANCO DE DADOS
+                    $arrayValues = array(
+                        "fields" => array(
+                            "nome_fantasia"       => $nome_fantasia,
+                            "sobrenome_razao"     => $sobrenome_razao,
+                            "cpf_cnpj"            => $cpf_cnpj,
+                            "rg_ie"               => $rg_ie,
+                            "nascimento_fundacao" => $nascimento_fundacao,
+                            "data_cadastro"       => date("Y-m-d"),
+                            "data_atualizacao"    => date("Y-m-d"),
+                            "tipo_pessoa"         => 0
+                        ),
+                        "where" => array(
+                            "id" => $id
+                        )
+                    );
+                    $update = $this->proprio->update($arrayValues);
+                    var_dump($update);
                     break;
             endswitch;
             die;

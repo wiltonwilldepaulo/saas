@@ -6,6 +6,13 @@ use PDOException;
 
 trait Create
 {
+    /**
+     * ESPERA COMO PARAMETRO UM ARRAY ONDE O INDECE SERÁ O FIELD DA TABELA DO BANCO DE DADOS,
+     * E O VALOR SERÁ ARMAZENADO NO BANCO.
+     *
+     * @param array $createFieldAndValues
+     * @return void
+     */
     public function create(array $createFieldAndValues)
     {
         try {
