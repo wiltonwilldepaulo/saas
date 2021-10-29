@@ -11,19 +11,19 @@ $Empresa = new Empresa();
 //CONTRANTES DO O DIRETORIO DO LOGO E DO ICONE.
 $logo    = $Arquivo->find("titulo", "logo", false);
 $icone   = $Arquivo->find("titulo", "icone", false);
-
 if (($icone) or ($logo)) {
-    $empresa = $Empresa->find("id", $icone[0]["id_pessoa"], false);
+    $empresa = $Empresa->find("id", $logo[0]["id_pessoa"], false);
 }
-
 if (isset($empresa)) :
     //PEGAMOS SOMENTE OS NUMEROS DO CNPJ
     $cnpj      = str_replace(".", "", str_replace("/", "", str_replace("-", "", $empresa[0]["cpf_cnpj"])));
     //PEGAMOS O DIRETORIO BASE DO ICONE E DO LOGO
-    $dir_logo  = "img" . DIRECTORY_SEPARATOR . $cnpj . DIRECTORY_SEPARATOR . "logo" . DIRECTORY_SEPARATOR;
-    $dir_icone = "img" . DIRECTORY_SEPARATOR . $cnpj . DIRECTORY_SEPARATOR . "icone" . DIRECTORY_SEPARATOR;
-    $full_icone = ($icone ? $dir_icone . $logo[0]["nome_arquivo"] : dirname(__FILE__, 3));
-    $full_logo  = ($logo ? $dir_logo . $logo[0]["nome_arquivo"] : dirname(__FILE__, 3));
+    $dir_logo  = "img/" . $cnpj .  "/logo/";
+    $dir_icone = "img/" . $cnpj  . "/icone/";
+
+    $full_icone = ($icone ? $dir_icone . $icone[0]["nome_arquivo"] : 'img/icon.png');
+    $full_logo  = ($logo ? $dir_logo . $logo[1]["nome_arquivo"] : 'img/icon.png');
+    var_dump($full_logo);
     define(
         "EMPRESA",
         array(
@@ -32,8 +32,8 @@ if (isset($empresa)) :
             "cpf_cnpj" => $empresa[0]["cpf_cnpj"],
             "rg_ie" => $empresa[0]["rg_ie"],
             "nascimento_fundacao" => $empresa[0]["nascimento_fundacao"],
-            "logo" => $full_icone,
-            "icone" => $full_logo
+            "logo" => $full_logo,
+            "icone" => $full_icone
         )
     );
 else :

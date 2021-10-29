@@ -130,8 +130,11 @@
                                                                                 data-allowed-file-extensions='["jpg", "jpeg", "png","ico"]'
                                                                                 data-max-file-size="2048KB"
                                                                                 data-theme="explorer-fas"
-                                                                                data-show-preview="true"
-                                                                                data-show-remove="true"
+                                                                                data-show-preview="true" {% if
+                                                                                empresa.nome_fantasia !='' %}
+                                                                                data-initial-preview='["{{ empresa.logo }}"]'
+                                                                                data-initial-preview-as-data="true" {%
+                                                                                endif %} data-show-remove="true"
                                                                                 data-show-upload="false" name="edtlogo"
                                                                                 id="edtlogo" type="file" required />
                                                                         </div>
@@ -144,8 +147,11 @@
                                                                                 data-allowed-file-extensions='["jpg", "jpeg", "png","ico"]'
                                                                                 data-max-file-size="2048KB"
                                                                                 data-theme="explorer-fas"
-                                                                                data-show-preview="true"
-                                                                                data-show-remove="true"
+                                                                                data-show-preview="true" {% if
+                                                                                empresa.nome_fantasia !='' %}
+                                                                                data-initial-preview='["{{ empresa.icone }}"]'
+                                                                                data-initial-preview-as-data="true" {%
+                                                                                endif %} data-show-remove="true"
                                                                                 data-show-upload="false" name="edticone"
                                                                                 id="edticone" type="file" required />
                                                                         </div>
