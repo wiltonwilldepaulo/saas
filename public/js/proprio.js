@@ -33,6 +33,29 @@ cnpj.addEventListener("blur", (e) => {
         .catch(e => console.log('Deu erro: ' + e.message()))
 });
 
+function deleta(id) {
+    $("#edtid").val(id);
+    const proprio = document.getElementById("proprio");
+    alert(id);
+    const form = new FormData(proprio);
+    const options = {
+        method: "post",
+        mode: "cors",
+        cache: "default",
+        body: form
+    }
+    //PESQUISAMOS OS DADOS DA EMPRESA BRASIL API
+    fetch(`controleproprio`, options)
+        .then(response => {
+            response.json()
+                .then(data => {
+                    $("#" + id).remove();
+                })
+        })
+        .catch(e => console.log('Deu erro: ' + e.message()))
+    return false;
+}
+
 $(document).ready(function () {
 
     $("#cnpj").inputmask({
@@ -93,7 +116,28 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    alert(response);
+                    if (document.getElementById('edtacao').value == 'c') {
+                        if (response != 'false') {
+                            $('html, body').animate({ scrollTop: 0 }, 'slow');
+                            //COLOCAMOS O ID DA EMPRESA CADASTRADA NA URL
+                            window.history.pushState('Object', 'Categoria JavaScript', 'proprio?id=' + response);
+                            //CHAMAMOS A FUNÇÃO DE CONTROLE DE ALERTAS PARA EXEBIR A MSG DE SUCESSO
+                            alerta(0, 'Cadastro realizado com sucesso!', 'Sucesso!', '');
+                        } else {
+                            //CHAMAMOS A FUNÇÃO DE CONTROLE DE ALERTAS PARA EXEBIR A MSG DE FALHA NA ROTINA
+                            alerta(0, 'Falha no cadastro!', 'Falha!', '');
+                        }
+
+                    } else if (document.getElementById('edtacao').value == 'e') {
+                        if (response != 'false') {
+                            $('html, body').animate({ scrollTop: 0 }, 'slow');
+                            //CHAMAMOS A FUNÇÃO DE CONTROLE DE ALERTAS PARA EXEBIR A MSG DE SUCESSO
+                            alerta(0, 'Alterações realizado com sucesso!', 'Sucesso!', 'listaproprio');
+                        } else {
+                            //CHAMAMOS A FUNÇÃO DE CONTROLE DE ALERTAS PARA EXEBIR A MSG DE FALHA NA ROTINA
+                            alerta(0, 'Falha ao aplicar as alterações!', 'Falha!', 'listaproprio');
+                        }
+                    }
                 }
             });
         }

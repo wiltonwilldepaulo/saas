@@ -54,6 +54,7 @@ class Proprio extends Base
                 "logo" => "http://localhost/img/34556785000103/logo/68ca94edbc9a99536e146c48b5b27472.png",
                 "icone" => "http://localhost/img/34556785000103/icone/21f4df246dc7602141a5b0541fb0b92c.png",
                 "proprio" => $proprio,
+                "empresa" => EMPRESA,
                 "acao" => $acao,
                 "home" => "http://localhost",
                 "lista" => "http://localhost/listaproprio",
@@ -161,6 +162,14 @@ class Proprio extends Base
                     $update = $this->proprio->update($arrayValues);
                     //VERIFICAMOS SE O UPDATE DEU CERTO
                     if ($update) :
+                        echo "true";
+                    else :
+                        echo "false";
+                    endif;
+                    break;
+                case 'd':
+                    $delete = $this->proprio->delete('id', filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING));
+                    if ($delete) :
                         echo "true";
                     else :
                         echo "false";

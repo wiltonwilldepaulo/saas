@@ -14,7 +14,7 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{icone}}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{empresa.logo}}" alt="AdminLTELogo" height="60" width="60">
         </div>
         {% include "site/admin_top_menu.html" %}
         {% include "site/admin_left_menu.html" %}
@@ -23,7 +23,6 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <img src="{{logo}}">
                             <h1 class="m-0">Controle de próprio</h1><br>
                         </div>
                         <div class="col-sm-6">
@@ -82,7 +81,7 @@
                                                                 <div class="row">
                                                                     <div class="form-group col-lg-4 col-md-4">
                                                                         <label for="cnpj">CPF | CNPJ</label>
-                                                                        <input type="text" name="cnpj"
+                                                                        <input autofocus type="text" name="cnpj"
                                                                             class="form-control" id="cnpj"
                                                                             placeholder="Digite o CPF ou CNPJ da pessoa!"
                                                                             value="{{proprio.cpf_cnpj}}" required>
@@ -101,9 +100,8 @@
                                                                     <div class="form-group col-lg-4 col-md-4">
                                                                         <label for="nome_fantasia">NOME | NOME
                                                                             FANTASIA</label>
-                                                                        <input autofocus type="text"
-                                                                            name="nome_fantasia" class="form-control"
-                                                                            id="nome_fantasia"
+                                                                        <input type="text" name="nome_fantasia"
+                                                                            class="form-control" id="nome_fantasia"
                                                                             placeholder="Digite o nome da pessoa ou empresa!"
                                                                             value="{{proprio.nome_fantasia}}" required>
                                                                     </div>
@@ -188,6 +186,7 @@
     </div>
     {% include "site/scriptcadastro.html" %}
     <script src="/js/proprio.js"></script>
+    <script src="/js/alerta.js"></script>
 </body>
 
 </html>

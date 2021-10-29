@@ -6,6 +6,14 @@ use PDOException;
 
 trait Delete
 {
+    /**
+     * ESPERA COMO PARAMETRO UM CAMPO ID DA TABELA DO BANCO DE DADOS,
+     * E O REGISTRO SERÁ REMOVIDO DO BANCO.
+     *
+     * @param fiels 
+     * @param value
+     * @return void
+     */
     public function delete($field, $value)
     {
         try {
