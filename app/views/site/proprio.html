@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% include "site/csscadastro.html" %}
-    <link rel="sortcut icon" href="{{logo}}" type="image/x-icon" />
+    <link rel="sortcut icon" href="{{empresa.icone}}" type="image/x-icon" />
     <title>{{ titulo }}</title>
 </head>
 
@@ -14,7 +14,7 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{empresa.logo}}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{empresa.icone}}" alt="AdminLTELogo" height="60" width="60">
         </div>
         {% include "site/admin_top_menu.html" %}
         {% include "site/admin_left_menu.html" %}
@@ -37,7 +37,7 @@
             </div>
             <form method="post" id="frmproprio" name="frmproprio" enctype='multipart/form-data'>
                 <input type="hidden" name="edtid" id="edtid" value="{{proprio.id}}">
-                <input type="hidden" name="edtacao" id="edtacao" value="{{acao}}">
+                <input type="text" name="edtacao" id="edtacao" value="{{acao}}">
                 <section class="content">
                     <div class="container-fluid">
                         <div class="row">
@@ -124,7 +124,7 @@
                                                                     </div>
                                                                     <div class="col-lg-6 col-sm-6">
                                                                         <div class="form-group">
-                                                                            <label for="edticone">Selecione o logo da
+                                                                            <label for="edtlogo">Selecione o logo da
                                                                                 empresa</label>
                                                                             <input data-language="pt-BR"
                                                                                 data-allowed-file-extensions='["jpg", "jpeg", "png","ico"]'
@@ -161,6 +161,82 @@
                                                         </div>
                                                         <div class="tab-pane" id="endereco">
                                                             <h3>Dados de endereço</h3>
+                                                            <div class="class card-body">
+                                                                <div class="row">
+                                                                    <div class="col-2 mb-3">
+                                                                        <label for="cep" class="form-label">CEP</label>
+                                                                        <input type="text" name="cep" id="cep"
+                                                                            class="form-control"
+                                                                            placeholder="Digete o CEP do endereço">
+                                                                    </div>
+                                                                    <div class="col-6 mb-3">
+                                                                        <label for="logradouro"
+                                                                            class="form-label">Logradouro</label>
+                                                                        <input type="text" name="logradouro"
+                                                                            id="logradouro" class="form-control"
+                                                                            placeholder="Digete o nome do logradouro">
+                                                                    </div>
+                                                                    <div class="col-4 mb-3">
+                                                                        <label for="complemento"
+                                                                            class="form-label">Complemento</label>
+                                                                        <input type="text" name="complemento"
+                                                                            id="complemento" class="form-control"
+                                                                            placeholder="Digete o complemento">
+                                                                    </div>
+                                                                    <div class="col-3 mb-3">
+                                                                        <label for="bairro"
+                                                                            class="form-label">Bairro</label>
+                                                                        <input type="text" name="bairro" id="bairro"
+                                                                            class="form-control"
+                                                                            placeholder="Digete o nome do bairro">
+                                                                    </div>
+                                                                    <div class="col-5 mb-3">
+                                                                        <label for="localidade"
+                                                                            class="form-label">Localidade</label>
+                                                                        <input type="text" name="localidade"
+                                                                            id="localidade" class="form-control"
+                                                                            placeholder="Digete o nome da Cidade">
+                                                                    </div>
+                                                                    <div class="col-1 mb-3">
+                                                                        <label for="uf" class="form-label">UF</label>
+                                                                        <input type="text" name="uf" id="uf"
+                                                                            class="form-control"
+                                                                            placeholder="Digete o nome do estado">
+                                                                    </div>
+                                                                    <div class="mb-2">
+                                                                        <label for="ibge"
+                                                                            class="form-label">IBGE</label>
+                                                                        <input type="text" name="ibge" id="ibge"
+                                                                            class="form-control"
+                                                                            placeholder="Digete o número do ibge">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <button id="btnendereco" name="btnendereco"
+                                                                        type="button" class="btn btn-success mb-1">
+                                                                        <i class="fas fa-plus"></i> Adicionar</button>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-12 list-group">
+                                                                        <a href="#"
+                                                                            class="list-group-item list-group-item-action active">
+                                                                            <div
+                                                                                class="d-flex w-100 justify-content-between">
+                                                                                <h5 class="mb-1">List group item heading
+                                                                                </h5>
+                                                                                <button type="button"
+                                                                                    class="btn btn-sm btn-danger"><i
+                                                                                        class="fas fa-trash"></i>
+                                                                                    Excluir</button>
+                                                                            </div>
+                                                                            <p class="mb-1">Some placeholder content in
+                                                                                a paragraph.</p>
+                                                                            <small>And some small print.</small>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
                                                         <div class="tab-pane" id="contato">

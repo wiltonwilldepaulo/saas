@@ -57,9 +57,56 @@ function deleta(id) {
 }
 
 $(document).ready(function () {
+    const cadastroEndereco = (result) => {
+        document.getElementById('edtacao').value = result;
+    }
+    const showEndereco = (result) => {
+        for (const campo in result) {
+            if (document.querySelector("#" + campo)) {
+                document.querySelector("#" + campo).value = result[campo]
+            }
+        }
+    }
+
+    $("#btnendereco").click(function () {
+        var acao = document.getElementById('edtacao').value;
+        document.getElementById('edtacao').value = 'c';
+        const option = {
+            method: 'GET',
+            mode: 'cors',
+            //body: 
+            cache: 'default'
+        }
+        fetch(`controleendereco`, option)
+            .then(response => {
+                response.json()
+                    .then(data => cadastroEndereco(acao))
+            })
+            .catch(e => console.log('Deu erro : ' + e.message()));
+
+    });
+
+    $("#cep").blur(function () {
+        let search = document.getElementById("cep").value.replace("-", "");
+        const option = {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'default'
+        }
+        fetch(`https://viacep.com.br/ws/${search}/json/`, option)
+            .then(response => {
+                response.json()
+                    .then(data => showEndereco(data))
+            })
+            .catch(e => console.log('Deu erro : ' + e.message()));
+    });
 
     $("#cnpj").inputmask({
         mask: ['999.999.999-99', '99.999.999/9999-99'],
+        keepStatic: true
+    });
+    $("#cep").inputmask({
+        mask: ['99999-999'],
         keepStatic: true
     });
 

@@ -25,10 +25,17 @@ class Proprio extends Base
             [
                 "titulo" => "Unesc - cadastro de empresa",
                 "nome" => "WILTON WILL DE PAULO",
-                "logo" => "/img/icon.png",
                 "proprio" => $proprio,
                 "home" => "http://localhost",
                 "cadastro" => "http://localhost/proprio",
+                "base_url" => BASE_URL,
+                "descricao_label" => "Controle e cadastro de empresa",
+                "logo" => EMPRESA["logo"],
+                "icone" =>  EMPRESA["icone"],
+                "proprio" => $proprio,
+                "empresa" => EMPRESA,
+                "home" => "http://localhost",
+                "lista" => "http://localhost/listaproprio",
                 "base_url" => BASE_URL,
                 "descricao_label" => "Controle e cadastro de empresa"
             ]
@@ -51,8 +58,8 @@ class Proprio extends Base
             [
                 "titulo" => "Unesc - cadastro de empresa",
                 "nome" => "WILTON WILL DE PAULO",
-                "logo" => "http://localhost/img/34556785000103/logo/68ca94edbc9a99536e146c48b5b27472.png",
-                "icone" => "http://localhost/img/34556785000103/icone/21f4df246dc7602141a5b0541fb0b92c.png",
+                "logo" => EMPRESA["logo"],
+                "icone" =>  EMPRESA["icone"],
                 "proprio" => $proprio,
                 "empresa" => EMPRESA,
                 "acao" => $acao,

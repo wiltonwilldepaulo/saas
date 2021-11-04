@@ -23,7 +23,6 @@ if (isset($empresa)) :
 
     $full_icone = ($icone ? $dir_icone . $icone[0]["nome_arquivo"] : 'img/icon.png');
     $full_logo  = ($logo ? $dir_logo . $logo[1]["nome_arquivo"] : 'img/icon.png');
-    var_dump($full_logo);
     define(
         "EMPRESA",
         array(
