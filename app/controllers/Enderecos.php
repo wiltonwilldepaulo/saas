@@ -26,10 +26,10 @@ class Enderecos extends Base
             $acao                = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
             switch ($acao):
                 case 'c':
-                    echo json_encode('{"cadastro":"teste"}');
+                    echo '{ "status": true }';
                     break;
                 case 'e':
-                    echo "edição";
+                    echo '{ "status": true }';
                     break;
                 case 'd':
 

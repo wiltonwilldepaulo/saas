@@ -1,5 +1,38 @@
+//RETORNA UMA PROMESSA
+function send(url, options) {
+    return fetch(url, options);
+}
+//FUNÇÃO ASSINCRONA.
+async function adiciona_endereco() {
+    const proprio = document.getElementById("frmproprio");
+    const form = new FormData(proprio);
+    const options = {
+        method: 'POST',
+        mode: 'cors',
+        body: form,
+        cache: 'default'
+    }
+    try {
+        const alerta = await document.querySelector();
+        alert
+        //APOS TERMINAR RECEBEMOS O RETORNO DA FUNÇÃO
+        const result = await send(`controleendereco`, options);
+        //APOS RECEBERMOS O RETORNO DA FUNÇÃO TENTAMOS CONVERTER PRA JSON
+        const data = await result.json();
+        //VERIFICAMOS SE OUVE SUCESSO AO CONVERTER PARA JSON
+        if (data.status == true) {
+            alert("Sucesso!");
+        } else {
+            alert("Falha!");
+        } data
+    } catch (error) {
+        console.log(error);
+    }
+}
 //SELECIONAMOS O CNPJ
 const cnpj = document.querySelector("#cnpj");
+//SELECIONAMOS O BOTÃO DE ADICIONAR ENDERECO.
+const addc_endereco = document.querySelector("#btnendereco");
 //NESTA FUNÇÃO PERCORREMOS TODAS AS POSIÇÕES DOS CAMPO DO JSON E 
 //TEMTAMOS ENCONTRAR O CAMPO COM MESMO ID NO FORME CASO ENCONTRE
 //ERÁ PREENCHER COM O VALOR ORIUNDO DA API
@@ -31,6 +64,10 @@ cnpj.addEventListener("blur", (e) => {
                 .then(data => showData(data))
         })
         .catch(e => console.log('Deu erro: ' + e.message()))
+});
+
+addc_endereco.addEventListener('click', () => {
+    adiciona_endereco();
 });
 
 function deleta(id) {
@@ -68,23 +105,6 @@ $(document).ready(function () {
         }
     }
 
-    $("#btnendereco").click(function () {
-        var acao = document.getElementById('edtacao').value;
-        document.getElementById('edtacao').value = 'c';
-        const option = {
-            method: 'GET',
-            mode: 'cors',
-            //body: 
-            cache: 'default'
-        }
-        fetch(`controleendereco`, option)
-            .then(response => {
-                response.json()
-                    .then(data => cadastroEndereco(acao))
-            })
-            .catch(e => console.log('Deu erro : ' + e.message()));
-
-    });
 
     $("#cep").blur(function () {
         let search = document.getElementById("cep").value.replace("-", "");
