@@ -13,15 +13,12 @@ function alerta(status, mensagem, titulo, link) {
         document.getElementById("alerta").className = 'callout callout-warning';
         document.getElementById("titulo").innerHTML = 'Atenção!';
         document.getElementById("mensagem").innerHTML = 'Todos os campos sinalizado com * são requeridos para o cadastro!';
-    }, 1500);
+    }, 1700);
     //APÓS AGUARDA 500MS REDIRECIONAMOS PARA PAGINA
     setTimeout(() => {
-
         if (link != '') {
             //REDIRECIONAMOS PARA A INTERFACE DE LISTAGEM
             window.location.replace(link);
         }
-
-    }, 500);
-
+    }, 1800);
 }

@@ -1,9 +1,34 @@
+//CONFIGURAÇÕES DOS PARAMENTRO DE VALIDAÇÃO DO FORMULÁRIO
+$('#frmproprio').validate({
+    rules: {
+        edtimagems: {
+            required: true,
+            file: true,
+        },
+        agree: "required"
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+    }
+});
+
 //RETORNA UMA PROMESSA
 function send(url, options) {
     return fetch(url, options);
 }
 //FUNÇÃO ASSINCRONA.
 async function adiciona_endereco() {
+    //RECEBEMOS A AÇÃO INICIAL ANTERIOS AO ENVIO DO FORM
+    let acao = document.getElementById("edtacao").value;
+    document.getElementById("edtacao").value = "c";
     const proprio = document.getElementById("frmproprio");
     const form = new FormData(proprio);
     const options = {
@@ -13,18 +38,44 @@ async function adiciona_endereco() {
         cache: 'default'
     }
     try {
-        const alerta = await document.querySelector();
-        alert
-        //APOS TERMINAR RECEBEMOS O RETORNO DA FUNÇÃO
-        const result = await send(`controleendereco`, options);
-        //APOS RECEBERMOS O RETORNO DA FUNÇÃO TENTAMOS CONVERTER PRA JSON
-        const data = await result.json();
-        //VERIFICAMOS SE OUVE SUCESSO AO CONVERTER PARA JSON
-        if (data.status == true) {
-            alert("Sucesso!");
-        } else {
-            alert("Falha!");
-        } data
+        //RECEBEMOS O RESULTADO DA VALIDAÇÃO DO FORMULARIO
+        const valida = await $('#frmproprio').valid();
+        //VERICAMOS SE A VALIDAÇÃO FOI EFETUADA COM SUCESSO.
+        if (valida) {
+            //APOS TERMINAR RECEBEMOS O RETORNO DA FUNÇÃO
+            const result = await send(`controleendereco`, options);
+            document.getElementById("edtacao").value = acao;
+            //APOS RECEBERMOS O RETORNO DA FUNÇÃO TENTAMOS CONVERTER PRA JSON
+            const data = await result.json();
+            //VERIFICAMOS SE OUVE SUCESSO AO CONVERTER PARA JSON
+            if (data.status == true) {
+                alerta(0, 'Endereço adicionado com sucesso!', 'Sucesso!', '');
+                document.getElementById("cep").value = '';
+                document.getElementById("logradouro").value = '';
+                document.getElementById("numero").value = '';
+                document.getElementById("complemento").value = '';
+                document.getElementById("bairro").value = '';
+                document.getElementById("localidade").value = '';
+                document.getElementById("uf").value = '';
+                document.getElementById("ibge").value = '';
+
+                document.getElementById("edtacao").value = "l";
+                const formulario = document.getElementById("frmproprio");
+                const frm = new FormData(formulario);
+                const opt = {
+                    method: 'POST',
+                    mode: 'cors',
+                    body: frm,
+                    cache: 'default'
+                }
+                const lista = await send(`controleendereco`, opt);
+                const endereco = await lista.json();
+                console.log(endereco);
+
+            } else {
+                alerta(1, 'Falha ao adicionar o endereço ' + error.message(), 'Falha!', '');
+            }
+        }
     } catch (error) {
         console.log(error);
     }

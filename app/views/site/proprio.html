@@ -163,52 +163,99 @@
                                                             <h3>Dados de endereço</h3>
                                                             <div class="class card-body">
                                                                 <div class="row">
-                                                                    <div class="col-2 mb-3">
-                                                                        <label for="cep" class="form-label">CEP *</label>
+                                                                    <div class="col-lg-2 col-md-2 col-sm-12 mb-3">
+                                                                        <label for="cep" class="form-label">CEP
+                                                                            *</label>
                                                                         <input required type="text" name="cep" id="cep"
                                                                             class="form-control"
-                                                                            placeholder="Digete o CEP do endereço">
+                                                                            placeholder="Digite o CEP do endereço">
                                                                     </div>
-                                                                    <div class="col-6 mb-3">
+                                                                    <div class="col-lg-5 col-md-5 col-sm-12 mb-3">
                                                                         <label for="logradouro"
                                                                             class="form-label">Logradouro * </label>
                                                                         <input required type="text" name="logradouro"
                                                                             id="logradouro" class="form-control"
                                                                             placeholder="Digete o nome do logradouro">
                                                                     </div>
-                                                                    <div class="col-4 mb-3">
+                                                                    <div class="col-lg-2 col-md-2 col-sm-12 mb-3">
+                                                                        <label for="numero" class="form-label">Número *
+                                                                        </label>
+                                                                        <input required type="text" name="numero"
+                                                                            id="numero" class="form-control"
+                                                                            placeholder="Digite o número do endereço">
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-md-3 col-sm-12 mb-3">
                                                                         <label for="complemento"
-                                                                            class="form-label">Complemento * </label>
-                                                                        <input required type="text" name="complemento"
+                                                                            class="form-label">Complemento</label>
+                                                                        <input type="text" name="complemento"
                                                                             id="complemento" class="form-control"
-                                                                            placeholder="Digete o complemento">
+                                                                            placeholder="Digite o complemento">
                                                                     </div>
-                                                                    <div class="col-3 mb-3">
-                                                                        <label for="bairro"
-                                                                            class="form-label">Bairro * </label>
-                                                                        <input required type="text" name="bairro" id="bairro"
-                                                                            class="form-control"
-                                                                            placeholder="Digete o nome do bairro">
+                                                                    <div class="col-lg-3 col-md-3 col-sm-12 mb-3">
+                                                                        <label for="bairro" class="form-label">Bairro *
+                                                                        </label>
+                                                                        <input required type="text" name="bairro"
+                                                                            id="bairro" class="form-control"
+                                                                            placeholder="Digite o nome do bairro">
                                                                     </div>
-                                                                    <div class="col-5 mb-3">
+                                                                    <div class="col-lg-5 col-md-5 col-sm-12 mb-3">
                                                                         <label for="localidade"
                                                                             class="form-label">Cidade *</label>
-                                                                        <input type="text" name="localidade"
+                                                                        <input required type="text" name="localidade"
                                                                             id="localidade" class="form-control"
-                                                                            placeholder="Digete o nome da Cidade">
+                                                                            placeholder="Digite o nome da Cidade">
                                                                     </div>
-                                                                    <div class="col-1 mb-3">
+                                                                    <div
+                                                                        class="form-group col-lg-4 col-md-4 col-sm-12 mb-3">
                                                                         <label for="uf" class="form-label">UF * </label>
-                                                                        <input type="text" name="uf" id="uf"
-                                                                            class="form-control"
-                                                                            placeholder="Digete o nome do estado">
+                                                                        <select required class="form-control" name="uf"
+                                                                            id="uf">
+                                                                            <option value="">Selecione</option>
+                                                                            <option value="AC">Acre</option>
+                                                                            <option value="AL">Alagoas</option>
+                                                                            <option value="AP">Amapá</option>
+                                                                            <option value="AM">Amazonas</option>
+                                                                            <option value="BA">Bahia</option>
+                                                                            <option value="CE">Ceará</option>
+                                                                            <option value="DF">Distrito Federal</option>
+                                                                            <option value="ES">Espirito Santo</option>
+                                                                            <option value="GO">Goiás</option>
+                                                                            <option value="MA">Maranhão</option>
+                                                                            <option value="MS">Mato Grosso do Sul
+                                                                            </option>
+                                                                            <option value="MT">Mato Grosso</option>
+                                                                            <option value="MG">Minas Gerais</option>
+                                                                            <option value="PA">Pará</option>
+                                                                            <option value="PB">Paraíba</option>
+                                                                            <option value="PR">Paraná</option>
+                                                                            <option value="PE">Pernambuco</option>
+                                                                            <option value="PI">Piauí</option>
+                                                                            <option value="RJ">Rio de Janeiro</option>
+                                                                            <option value="RN">Rio Grande do Norte
+                                                                            </option>
+                                                                            <option value="RS">Rio Grande do Sul
+                                                                            </option>
+                                                                            <option value="RO">Rondônia</option>
+                                                                            <option value="RR">Roraima</option>
+                                                                            <option value="SC">Santa Catarina</option>
+                                                                            <option value="SP">São Paulo</option>
+                                                                            <option value="SE">Sergipe</option>
+                                                                            <option value="TO">Tocantins</option>
+                                                                        </select>
                                                                     </div>
-                                                                    <div class="mb-2">
-                                                                        <label for="ibge"
-                                                                            class="form-label">IBGE</label>
-                                                                        <input type="text" name="ibge" id="ibge"
-                                                                            class="form-control"
+                                                                    <div class="col-lg-3 col-md-3 col-sm-12 mb-2">
+                                                                        <label for="ibge" class="form-label">IBGE
+                                                                            *</label>
+                                                                        <input required type="text" name="ibge"
+                                                                            id="ibge" class="form-control"
                                                                             placeholder="Digete o número do ibge">
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
+                                                                        <label for="titulo" class="form-label">Titulo
+                                                                            *</label>
+                                                                        <input required type="text" name="titulo"
+                                                                            id="titulo" class="form-control"
+                                                                            placeholder="Digite um título para o endereço">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -218,7 +265,7 @@
                                                                 </div>
 
                                                                 <div class="row">
-                                                                    <div class="col-12 list-group">
+                                                                    <div class="col-12 list-group" id="lista">
                                                                         <a href="#"
                                                                             class="list-group-item list-group-item-action active">
                                                                             <div
