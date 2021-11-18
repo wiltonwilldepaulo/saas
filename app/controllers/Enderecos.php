@@ -58,7 +58,19 @@ class Enderecos extends Base
                     break;
                 case 'l':
                     $find = $this->endereco->findBy('id_pessoa', $id, true);
-                    echo json_encode($find);
+                    $html = "";
+                    foreach ($find as $key => $value) :
+                        $html = $html . "<div id='endereco" . $value->id . "' class='list-group-item list-group-item-action active'>" .
+                            "<div class='d-flex w-100 justify-content-between'>" .
+                            "<h5 class='mb-1'>" . $value->titulo . "</h5>" .
+                            "<button type='button'class='btn btn-sm btn-danger'>" .
+                            "<i class='fas fa-trash'></i> Excluir" .
+                            "</button>" .
+                            "</div>" .
+                            "<p class='mb-1'>CEP: " . $value->cep . ", logradouro: " . $value->logradouro . ", número: " . $value->numero . ", bairro: " . $value->bairro . ", cidade:" . $value->localidade . ", uf: " . $value->uf . "</p>" .
+                            "</div>";
+                    endforeach;
+                    echo $html;
                     break;
             endswitch;
             die;

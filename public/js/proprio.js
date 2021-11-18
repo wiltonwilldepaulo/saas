@@ -69,9 +69,8 @@ async function adiciona_endereco() {
                     cache: 'default'
                 }
                 const lista = await send(`controleendereco`, opt);
-                const endereco = await lista.json();
-                console.log(endereco);
-
+                const html = await lista.text();
+                document.getElementById("lista").innerHTML = html;
             } else {
                 alerta(1, 'Falha ao adicionar o endereço ' + error.message(), 'Falha!', '');
             }
