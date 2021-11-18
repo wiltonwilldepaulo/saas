@@ -50,33 +50,7 @@ async function adiciona_endereco() {
             //VERIFICAMOS SE OUVE SUCESSO AO CONVERTER PARA JSON
             if (data.status == true) {
                 alerta(0, 'Endereço adicionado com sucesso!', 'Sucesso!', '');
-                document.getElementById("cep").value = '';
-                document.getElementById("logradouro").value = '';
-                document.getElementById("numero").value = '';
-                document.getElementById("complemento").value = '';
-                document.getElementById("bairro").value = '';
-                document.getElementById("localidade").value = '';
-                document.getElementById("uf").value = '';
-                document.getElementById("ibge").value = '';
-                //ALTERAMOS O VALOR DA AÇÃO PARA LISTAGEM    
-                document.getElementById("edtacao").value = "l";
-                //SELECIONAMOS OS NOVOS VALORES DO FORMULARIO
-                const formulario = document.getElementById("frmproprio");
-                const frm = new FormData(formulario);
-                const opt = {
-                    method: 'POST',
-                    mode: 'cors',
-                    body: frm,
-                    cache: 'default'
-                }
-                //RECEBEMOS A REPOSTA DE TODOS ENDEREÇOS CADASTRADOR
-                const lista = await send(`controleendereco`, opt);
-                //CONVERTEMOS O ENDEREÇO PARA TEXTO
-                const html = await lista.text();
-                //ATRIBUIMOS O HTML DO ENDEREÇO PARA LIST-GROUP
-                document.getElementById("lista").innerHTML = html;
-                //COLOCAMOS O VALOR PADRÃO NO CAMPO AÇÃO
-                document.getElementById("edtacao").value = acao;
+                lista_endereco();
             } else {
                 alerta(1, 'Falha ao adicionar o endereço ' + error.message(), 'Falha!', '');
             }
@@ -85,6 +59,8 @@ async function adiciona_endereco() {
         console.log(error);
     }
 }
+//SELECIONAMOS A ABA DE ENDEREÇO
+const tstendereco = document.querySelector("#tb-endereco");
 //SELECIONAMOS O CNPJ
 const cnpj = document.querySelector("#cnpj");
 //SELECIONAMOS O BOTÃO DE ADICIONAR ENDERECO.
@@ -124,6 +100,48 @@ cnpj.addEventListener("blur", (e) => {
 
 addc_endereco.addEventListener('click', () => {
     adiciona_endereco();
+});
+
+//FUNÇÃO DE LISTAGEM DE ENDEREÇOS
+async function lista_endereco() {
+    //LIMPA TODOS OS CAMPO DO FORUMULARIO DE CADASTRO DE ENDEREÇOS
+    document.getElementById("cep").value = '';
+    document.getElementById("logradouro").value = '';
+    document.getElementById("numero").value = '';
+    document.getElementById("complemento").value = '';
+    document.getElementById("bairro").value = '';
+    document.getElementById("localidade").value = '';
+    document.getElementById("uf").value = '';
+    document.getElementById("ibge").value = '';
+    document.getElementById("titulo").value = '';
+    //HABILITAMOS A VISIBILIDADE DO SPINER CARREGADO
+    document.getElementById("carregando").className = 'col-12';
+    let act = document.getElementById("edtacao").value;
+    //ALTERAMOS O VALOR DA AÇÃO PARA LISTAGEM    
+    document.getElementById("edtacao").value = "l";
+    //SELECIONAMOS OS NOVOS VALORES DO FORMULARIO
+    const formulario = document.getElementById("frmproprio");
+    const frm = new FormData(formulario);
+    const opt = {
+        method: 'POST',
+        mode: 'cors',
+        body: frm,
+        cache: 'default'
+    }
+    //RECEBEMOS A REPOSTA DE TODOS ENDEREÇOS CADASTRADOR
+    const lista = await send(`controleendereco`, opt);
+    //CONVERTEMOS O ENDEREÇO PARA TEXTO
+    const html = await lista.text();
+    //ATRIBUIMOS O HTML DO ENDEREÇO PARA LIST-GROUP
+    document.getElementById("lista").innerHTML = html;
+    //COLOCAMOS O VALOR PADRÃO NO CAMPO AÇÃO
+    document.getElementById("edtacao").value = act;
+    //DESABILITAMOS A VISIBILIDADE DO SPINER CARREGADO
+    document.getElementById("carregando").className = 'col-12 d-none';
+}
+//AO CLIECAR NO TAB DE ENDEREÇOS ATUALIZAMOS A LISTA DE ENDEREÇOS
+tstendereco.addEventListener('click', () => {
+    lista_endereco();
 });
 
 function deleta(id) {
