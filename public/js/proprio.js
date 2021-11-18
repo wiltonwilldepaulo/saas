@@ -58,8 +58,9 @@ async function adiciona_endereco() {
                 document.getElementById("localidade").value = '';
                 document.getElementById("uf").value = '';
                 document.getElementById("ibge").value = '';
-
+                //ALTERAMOS O VALOR DA AÇÃO PARA LISTAGEM    
                 document.getElementById("edtacao").value = "l";
+                //SELECIONAMOS OS NOVOS VALORES DO FORMULARIO
                 const formulario = document.getElementById("frmproprio");
                 const frm = new FormData(formulario);
                 const opt = {
@@ -68,9 +69,14 @@ async function adiciona_endereco() {
                     body: frm,
                     cache: 'default'
                 }
+                //RECEBEMOS A REPOSTA DE TODOS ENDEREÇOS CADASTRADOR
                 const lista = await send(`controleendereco`, opt);
+                //CONVERTEMOS O ENDEREÇO PARA TEXTO
                 const html = await lista.text();
+                //ATRIBUIMOS O HTML DO ENDEREÇO PARA LIST-GROUP
                 document.getElementById("lista").innerHTML = html;
+                //COLOCAMOS O VALOR PADRÃO NO CAMPO AÇÃO
+                document.getElementById("edtacao").value = acao;
             } else {
                 alerta(1, 'Falha ao adicionar o endereço ' + error.message(), 'Falha!', '');
             }
