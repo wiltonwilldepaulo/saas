@@ -24,6 +24,7 @@ class Enderecos extends Base
             $this->endereco = new Endereco();
             //CAPTURAMOS OS DADOS DO FORM
             $id                  = filter_input(INPUT_POST, 'edtid', FILTER_SANITIZE_STRING);
+            $idendereco                  = filter_input(INPUT_POST, 'edtidendereco', FILTER_SANITIZE_STRING);
             $acao                = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
             $arrayValues = array(
                 "id_pessoa" => filter_input(INPUT_POST, 'edtid', FILTER_SANITIZE_STRING),
@@ -54,7 +55,16 @@ class Enderecos extends Base
                     echo '{ "status": true }';
                     break;
                 case 'd':
-
+                    try {
+                        $delete = $this->endereco->delete('id', $idendereco);
+                        if ($delete) {
+                            echo '{ "status": true }';
+                        } else {
+                            echo '{ "status": false }';
+                        }
+                    } catch (PDOException $e) {
+                        echo '{ "status": false, "erro": ' . $e->getMessage() . ' }';
+                    }
                     break;
                 case 'l':
                     $find = $this->endereco->findBy('id_pessoa', $id, true);
@@ -63,7 +73,7 @@ class Enderecos extends Base
                         $html = $html . "<div id='endereco" . $value->id . "' class='list-group-item list-group-item-action active'>" .
                             "<div class='d-flex w-100 justify-content-between'>" .
                             "<h5 class='mb-1'>" . $value->titulo . "</h5>" .
-                            "<button type='button'class='btn btn-sm btn-danger'>" .
+                            "<button onclick='remove_endereco(" . $value->id . ");' type='button'class='btn btn-sm btn-danger'>" .
                             "<i class='fas fa-trash'></i> Excluir" .
                             "</button>" .
                             "</div>" .

@@ -143,7 +143,7 @@ async function lista_endereco() {
 tstendereco.addEventListener('click', () => {
     lista_endereco();
 });
-
+//REMOVE O PROPRIO
 function deleta(id) {
     $("#edtid").val(id);
     const proprio = document.getElementById("proprio");
@@ -166,7 +166,38 @@ function deleta(id) {
         .catch(e => console.log('Deu erro: ' + e.message()))
     return false;
 }
-
+//REMOVE O ENDEREÇO DO PROPRIO
+async function remove_endereco(id) {
+    //HABILITAMOS A VISIBILIDADE DO SPINER CARREGADO
+    document.getElementById("carregando").className = 'col-12';
+    document.getElementById("edtidendereco").value = id;
+    let act = document.getElementById("edtacao").value;
+    //ALTERAMOS O VALOR DA AÇÃO PARA EXCLUSÃO    
+    document.getElementById("edtacao").value = "d";
+    //SELECIONAMOS OS NOVOS VALORES DO FORMULARIO
+    const formulario = document.getElementById("frmproprio");
+    const frm = new FormData(formulario);
+    const opt = {
+        method: 'POST',
+        mode: 'cors',
+        body: frm,
+        cache: 'default'
+    }
+    //RECEBEMOS A REPOSTA DA EXCLUSÃO DO ENDEREÇO
+    const resulta = await send(`controleendereco`, opt);
+    //CONVERTEMOS O ENDEREÇO PARA JSON
+    const json = await resulta.json();
+    console.log(json);
+    //VERIFICAMOS SE O ENDEREÇO FOI EXCLUIDO
+    if (json.status) {
+        console.log("oi");
+        $("#endereco" + id).remove();
+    }
+    //COLOCAMOS O VALOR PADRÃO NO CAMPO AÇÃO
+    document.getElementById("edtacao").value = act;
+    //DESABILITAMOS A VISIBILIDADE DO SPINER CARREGADO
+    document.getElementById("carregando").className = 'col-12 d-none';
+}
 $(document).ready(function () {
     const cadastroEndereco = (result) => {
         document.getElementById('edtacao').value = result;
@@ -178,8 +209,6 @@ $(document).ready(function () {
             }
         }
     }
-
-
     $("#cep").blur(function () {
         let search = document.getElementById("cep").value.replace("-", "");
         const option = {
