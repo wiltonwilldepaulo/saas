@@ -37,6 +37,7 @@
             </div>
             <form method="post" id="frmproprio" name="frmproprio" enctype='multipart/form-data'>
                 <input type="hidden" name="edtidendereco" id="edtidendereco">
+                <input type="hidden" name="edtidcontato" id="edtidcontato">
                 <input type="hidden" name="edtid" id="edtid" value="{{proprio.id}}">
                 <input type="hidden" name="edtacao" id="edtacao" value="{{acao}}">
                 <section class="content">
@@ -286,6 +287,67 @@
 
                                                         <div class="tab-pane" id="contato">
                                                             <h3>Dados de contato</h3>
+                                                            <div class="class card-body">
+                                                                <div class="row">
+                                                                    <div
+                                                                        class="form-group col-lg-4 col-md-4 col-sm-12 mb-3">
+                                                                        <label for="tipocontato" class="form-label">Tipo
+                                                                            *
+                                                                        </label>
+                                                                        <select required class="form-control"
+                                                                            name="tipocontato" id="tipocontato">
+                                                                            <option value="">Selecione o tipo de contato
+                                                                            </option>
+                                                                            <option value="celular">Celular</option>
+                                                                            <option value="whatsapp">WhatsApp</option>
+                                                                            <option value="telegram">Telegram</option>
+                                                                            <option value="telefone">Telefone</option>
+                                                                            <option value="email">E-mail</option>
+                                                                            <option value="facebook">Facebook</option>
+                                                                            <option value="instagram">Instagram</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                                                                        <label for="titulocontato"
+                                                                            class="form-label">Titulo
+                                                                            *</label>
+                                                                        <input required type="text" name="titulocontato"
+                                                                            id="titulocontato" class="form-control"
+                                                                            placeholder="Digite o titulo ou descrição do contato">
+                                                                    </div>
+                                                                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                                                                        <label for="enderecocontato"
+                                                                            class="form-label">Contato
+                                                                            *</label>
+                                                                        <input required type="text"
+                                                                            name="enderecocontato" id="enderecocontato"
+                                                                            class="form-control"
+                                                                            placeholder="Digite o contato.">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <button id="btncontato" name="btncontato"
+                                                                        type="button" class="btn btn-success mb-1">
+                                                                        <i class="fas fa-plus"></i> Adicionar</button>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-12 d-none" id="carregandocontato">
+                                                                        <div class="text-center">
+                                                                            <div class="spinner-border text-primary"
+                                                                                role="status"
+                                                                                style="width: 3rem; height: 3rem;">
+                                                                                <span class="visually-hidden"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12 list-group" id="listacontato">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
