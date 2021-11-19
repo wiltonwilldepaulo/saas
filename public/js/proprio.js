@@ -266,27 +266,26 @@ tstcontato.addEventListener('click', () => {
     lista_contato();
 });
 //REMOVE O PROPRIO
-function deleta(id) {
-    $("#edtid").val(id);
-    const proprio = document.getElementById("proprio");
-    alert(id);
+async function deleta(id) {
+    const cod = document.querySelector("#edtid");
+    cod.value = id;
+    /*const proprio = document.getElementById("proprio");
     const form = new FormData(proprio);
     const options = {
-        method: "post",
-        mode: "cors",
-        cache: "default",
-        body: form
+        method: 'POST',
+        mode: 'cors',
+        body: form,
+        cache: 'default'
     }
-    //PESQUISAMOS OS DADOS DA EMPRESA BRASIL API
-    fetch(`controleproprio`, options)
-        .then(response => {
-            response.json()
-                .then(data => {
-                    $("#" + id).remove();
-                })
-        })
-        .catch(e => console.log('Deu erro: ' + e.message()))
-    return false;
+    //RECEBEMOS A REPOSTA DA EXCLUSÃO DO ENDEREÇO
+    const resulta = await send(`controleproprio`, options);
+    //CONVERTEMOS O ENDEREÇO PARA JSON
+    const json = await resulta.json();
+    console.log(json);
+    //VERIFICAMOS SE O ENDEREÇO FOI EXCLUIDO
+    if (json.status) {
+        $("#proprio" + id).remove();
+    }*/
 }
 //REMOVE O ENDEREÇO DO PROPRIO
 async function remove_endereco(id) {
@@ -312,7 +311,6 @@ async function remove_endereco(id) {
     console.log(json);
     //VERIFICAMOS SE O ENDEREÇO FOI EXCLUIDO
     if (json.status) {
-        console.log("oi");
         $("#endereco" + id).remove();
     }
     //COLOCAMOS O VALOR PADRÃO NO CAMPO AÇÃO

@@ -50,7 +50,7 @@
                                 <tbody>
                                     <!--Items array    Array-->
                                     {% for proprios in proprio %}
-                                    <tr id="{{proprios.id}}">
+                                    <tr id="proprio{{proprios.id}}">
                                         <td>{{proprios.nome_fantasia}}</td>
                                         <td>{{proprios.sobrenome_razao}}</td>
                                         <td>{{proprios.cpf_cnpj}}</td>
@@ -60,10 +60,10 @@
                                             <a href="{{ (cadastro ~ '?id=' ~ proprios.id) }}" class="btn btn-warning">
                                                 <i class="fas fa-edit"> </i> Editar
                                             </a>
-                                            <button type="button" onclick="deleta('{{ proprios.id }}');"
+                                            <!--<button type="button" onclick="deleta('proprios.id');"
                                                 name="btnexcluuir" id="btnexcluuir" class="btn btn-danger">
                                                 <i class="fas fa-trash"> </i> Excluir
-                                            </button>
+                                            </button>-->
                                         </td>
                                     </tr>
                                     {% endfor %}
