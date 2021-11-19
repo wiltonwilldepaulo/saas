@@ -72,3 +72,26 @@ ALTER TABLE public.endereco
 
 COMMENT ON CONSTRAINT "ENDERECO_PESSOA" ON public.endereco
     IS 'RECHAVE ESTRANGEIRA DA PESSOA';
+
+
+    CREATE TABLE public.contato
+(
+    id bigint NOT NULL DEFAULT nextval('contato_id_seq'::regclass),
+    id_pessoa bigint,
+    tipo character varying(50) COLLATE pg_catalog."default",
+    titulo character varying(250) COLLATE pg_catalog."default",
+    contato character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT contato_pkey PRIMARY KEY (id),
+    CONSTRAINT "CONTATO_PESSOA" FOREIGN KEY (id_pessoa)
+        REFERENCES public.pessoa (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.contato
+    OWNER to postgres;
+
+COMMENT ON CONSTRAINT "CONTATO_PESSOA" ON public.contato
+    IS 'CHAVE ESTRANGUEIRA PARA PESSOA.';
