@@ -132,13 +132,17 @@
                                                                                 data-allowed-file-extensions='["jpg", "jpeg", "png","ico"]'
                                                                                 data-max-file-size="2048KB"
                                                                                 data-theme="explorer-fas"
+                                                                                data-auto-replace="true"
+                                                                                data-preview-file-type="image"
                                                                                 data-show-preview="true" {% if
-                                                                                empresa.nome_fantasia !='' %}
-                                                                                data-initial-preview='["{{ empresa.logo }}"]'
+                                                                                (visual.nome_fantasia !='' ) and
+                                                                                (acao=='e' ) %}
+                                                                                data-initial-preview='["{{ visual.logo }}"]'
                                                                                 data-initial-preview-as-data="true" {%
-                                                                                endif %} data-show-remove="true"
+                                                                                else %} required {% endif %}
+                                                                                data-show-remove="true"
                                                                                 data-show-upload="false" name="edtlogo"
-                                                                                id="edtlogo" type="file" required />
+                                                                                id="edtlogo" type="file" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-6 col-sm-6">
@@ -149,13 +153,17 @@
                                                                                 data-allowed-file-extensions='["jpg", "jpeg", "png","ico"]'
                                                                                 data-max-file-size="2048KB"
                                                                                 data-theme="explorer-fas"
+                                                                                data-auto-replace="true"
+                                                                                data-preview-file-type="image"
                                                                                 data-show-preview="true" {% if
-                                                                                empresa.nome_fantasia !='' %}
-                                                                                data-initial-preview='["{{ empresa.icone }}"]'
+                                                                                (visual.nome_fantasia !='' ) and
+                                                                                (acao=='e' ) %}
+                                                                                data-initial-preview='["{{ visual.icone }}"]'
                                                                                 data-initial-preview-as-data="true" {%
-                                                                                endif %} data-show-remove="true"
+                                                                                else %} required {% endif %}
+                                                                                data-show-remove="true"
                                                                                 data-show-upload="false" name="edticone"
-                                                                                id="edticone" type="file" required />
+                                                                                id="edticone" type="file" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -370,12 +378,35 @@
                         </div>
                 </section>
             </form>
+            <h1>{{empresa.logo}}</h1>
         </div>
         {% include "site/footer.html" %}
     </div>
     {% include "site/scriptcadastro.html" %}
     <script src="/js/proprio.js"></script>
     <script src="/js/alerta.js"></script>
+    <script>
+        var config = '{{ visual.logo_dados|json_encode()|raw }}';
+        var cf = Array.from(config.slice(1).replace(/.$/, ''));
+        console.log(cf);
+        var foto = '{{ visual.logo|raw }}';
+        var ft = Array.from(foto.slice(1).replace(/.$/, ''));
+        $("#edtlogo").fileinput({
+            'theme': 'explorer-fas',
+            'showPreview': true,
+            'showRemove': true,
+            'showUpload': false,
+            'language': 'pt-BR',
+            'allowedFileExtensions': ['jpg', 'png'],
+            'minFileCount': 1,
+            'maxFileCount': 10,
+            'validateInitialCount': true,
+            'overwriteInitial': true,
+            'initialPreviewAsData': true,
+            'initialPreviewConfig': cf,
+
+        });
+    </script>
 </body>
 
 </html>

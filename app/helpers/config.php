@@ -32,7 +32,11 @@ if (isset($empresa)) :
             "rg_ie" => $empresa[0]["rg_ie"],
             "nascimento_fundacao" => $empresa[0]["nascimento_fundacao"],
             "logo" => $full_logo,
-            "icone" => $full_icone
+            "logo_nome" => $logo,
+            "logo_dados" => '[{ caption: "' . $logo[1]["nome_arquivo"] . '", size: "' . strval(filesize($full_logo)) . '", key: 0 }]',
+            "icone" => $full_icone,
+            "icone_tamanho" => filesize($full_icone),
+            "icone_nome" => $icone
         )
     );
 else :

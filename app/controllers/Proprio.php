@@ -58,10 +58,8 @@ class Proprio extends Base
             [
                 "titulo" => "Unesc - cadastro de empresa",
                 "nome" => "WILTON WILL DE PAULO",
-                "logo" => EMPRESA["logo"],
-                "icone" =>  EMPRESA["icone"],
                 "proprio" => $proprio,
-                "empresa" => EMPRESA,
+                "visual" => EMPRESA,
                 "acao" => $acao,
                 "home" => "http://localhost",
                 "lista" => "http://localhost/listaproprio",
