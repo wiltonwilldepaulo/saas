@@ -36,7 +36,7 @@ if (isset($empresa)) :
                     //CAPTURAMOS O NOME DA IMAGEM
                     "caption" => $logo[1]["nome_arquivo"],
                     //CAPTURAMOS O TAMANHO DA IMAGEM
-                    "size" => strval(filesize($full_logo)),
+                    "size" => ((file_exists($full_logo)) ? strval(filesize($full_logo)) : 0),
                     //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
                     "url" => "controlearquivo",
                     //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
@@ -48,7 +48,7 @@ if (isset($empresa)) :
                     //CAPTURAMOS O NOME DA IMAGEM
                     "caption" => $icone[0]["nome_arquivo"],
                     //CAPTURAMOS O TAMANHO DA IMAGEM
-                    "size" => strval(filesize($full_icone)),
+                    "size" => strval((file_exists($full_icone)) ? filesize($full_icone) : 0),
                     //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
                     "url" => "controlearquivo",
                     //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
