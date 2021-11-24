@@ -40,7 +40,7 @@ if (isset($empresa)) :
                     //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
                     "url" => "controlearquivo",
                     //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
-                    "extra" => array("id" => $logo[1]["id"], "edtacao" => "dlogo")
+                    "extra" => array("id" => $logo[1]["id"], "edtacao" => "dlogo", "dir" => $full_logo)
                 )
             ),
             "icone_dados" => json_encode(
@@ -52,7 +52,7 @@ if (isset($empresa)) :
                     //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
                     "url" => "controlearquivo",
                     //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
-                    "extra" => array("id" => $icone[0]["id"], "edtacao" => "dicone")
+                    "extra" => array("id" => $icone[0]["id"], "edtacao" => "dicone", "dir" => $full_icone)
                 )
             ),
             "logo" => $full_logo,
