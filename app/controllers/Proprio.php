@@ -68,7 +68,6 @@ class Proprio extends Base
             ]
         );
     }
-
     public function controle($request, $response)
     {
         //VERIFICAMOS SE EXISTE A REQUISIÇÃO POST

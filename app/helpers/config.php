@@ -31,12 +31,32 @@ if (isset($empresa)) :
             "cpf_cnpj" => $empresa[0]["cpf_cnpj"],
             "rg_ie" => $empresa[0]["rg_ie"],
             "nascimento_fundacao" => $empresa[0]["nascimento_fundacao"],
+            "logo_dados" => json_encode(
+                array(
+                    //CAPTURAMOS O NOME DA IMAGEM
+                    "caption" => $logo[1]["nome_arquivo"],
+                    //CAPTURAMOS O TAMANHO DA IMAGEM
+                    "size" => strval(filesize($full_logo)),
+                    //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
+                    "url" => "controlearquivo",
+                    //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
+                    "extra" => array("id" => $logo[1]["id"], "edtacao" => "dlogo")
+                )
+            ),
+            "icone_dados" => json_encode(
+                array(
+                    //CAPTURAMOS O NOME DA IMAGEM
+                    "caption" => $icone[0]["nome_arquivo"],
+                    //CAPTURAMOS O TAMANHO DA IMAGEM
+                    "size" => strval(filesize($full_icone)),
+                    //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
+                    "url" => "controlearquivo",
+                    //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
+                    "extra" => array("id" => $icone[0]["id"], "edtacao" => "dicone")
+                )
+            ),
             "logo" => $full_logo,
-            "logo_nome" => $logo,
-            "logo_dados" => '[{ caption: "' . $logo[1]["nome_arquivo"] . '", size: "' . strval(filesize($full_logo)) . '", key: 0 }]',
-            "icone" => $full_icone,
-            "icone_tamanho" => filesize($full_icone),
-            "icone_nome" => $icone
+            "icone" => $full_icone
         )
     );
 else :

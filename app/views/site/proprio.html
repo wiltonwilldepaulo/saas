@@ -386,25 +386,18 @@
     <script src="/js/proprio.js"></script>
     <script src="/js/alerta.js"></script>
     <script>
-        var config = '{{ visual.logo_dados|json_encode()|raw }}';
-        var cf = Array.from(config.slice(1).replace(/.$/, ''));
-        console.log(cf);
-        var foto = '{{ visual.logo|raw }}';
-        var ft = Array.from(foto.slice(1).replace(/.$/, ''));
+        //RECEBEMOS OS DADOS DAS VARIAVEIS DEFINIDAS PELA ROTA
+        var dados_logo = '{{ visual.logo_dados|json_encode()|raw }}';
+        var dados_icone = '{{ visual.icone_dados|json_encode()|raw }}';
+        //CONVERTEMOS PARA JSON
+        var config_logo = JSON.parse(dados_logo.slice(1).replace(/.$/, ''));
+        var config_icone = JSON.parse(dados_icone.slice(1).replace(/.$/, ''));
+        //APLICAMOS AS INFORMAÇÕES DE CAPTION E SIZE
         $("#edtlogo").fileinput({
-            'theme': 'explorer-fas',
-            'showPreview': true,
-            'showRemove': true,
-            'showUpload': false,
-            'language': 'pt-BR',
-            'allowedFileExtensions': ['jpg', 'png'],
-            'minFileCount': 1,
-            'maxFileCount': 10,
-            'validateInitialCount': true,
-            'overwriteInitial': true,
-            'initialPreviewAsData': true,
-            'initialPreviewConfig': cf,
-
+            'initialPreviewConfig': [config_logo]
+        });
+        $("#edticone").fileinput({
+            'initialPreviewConfig': [config_icone]
         });
     </script>
 </body>
