@@ -95,6 +95,8 @@ async function adiciona_contato() {
 }
 //SELECIONAMOS O TIPO DE CONTATO
 const tipocontato = document.querySelector("#tipocontato");
+//SELECIONAMOS A ABA DE EMPRESA
+const tstempresa = document.querySelector("#empresa");
 //SELECIONAMOS A ABA DE ENDEREÇO
 const tstendereco = document.querySelector("#tb-endereco");
 //SELECIONAMOS A ABA DE CONTATOS
@@ -265,6 +267,10 @@ tstendereco.addEventListener('click', () => {
 tstcontato.addEventListener('click', () => {
     lista_contato();
 });
+//
+tstempresa.addEventListener('click', () => {
+    controle_pagina();
+});
 //REMOVE O PROPRIO
 async function deleta(id) {
     const cod = document.querySelector("#edtid");
@@ -349,7 +355,23 @@ async function remove_contato(id) {
     //DESABILITAMOS A VISIBILIDADE DO SPINER CARREGADO
     document.getElementById("carregandocontato").className = 'col-12 d-none';
 }
+function controle_pagina() {
+    if (window.location.search.slice(1) != "") {
+        document.getElementById("edtacao").value = "e";
+    }
+    if (
+        (document.getElementById("edtid").value != '') &&
+        (document.getElementById("edtacao").value == 'e')
+    ) {
+        document.getElementById("tb-endereco").className = 'nav-link';
+        document.getElementById("tb-contato").className = 'nav-link';
+    } else {
+        document.getElementById("tb-endereco").className = 'nav-link disabled';
+        document.getElementById("tb-contato").className = 'nav-link disabled';
+    }
+}
 $(document).ready(function () {
+    controle_pagina();
     const cadastroEndereco = (result) => {
         document.getElementById('edtacao').value = result;
     }
@@ -389,13 +411,6 @@ $(document).ready(function () {
         language: "pt-BR",
         autoclose: true
     });
-    if (document.getElementById("edtid").value != '') {
-        document.getElementById("tb-endereco").className = 'nav-link';
-        document.getElementById("tb-contato").className = 'nav-link';
-    } else {
-        document.getElementById("tb-endereco").className = 'nav-link disabled';
-        document.getElementById("tb-contato").className = 'nav-link disabled';
-    }
     //CONFIGURAÇÕES DOS PARAMENTRO DE VALIDAÇÃO DO FORMULÁRIO
     $('#frmproprio').validate({
         rules: {
@@ -438,13 +453,15 @@ $(document).ready(function () {
                             $('html, body').animate({ scrollTop: 0 }, 'slow');
                             //COLOCAMOS O ID DA EMPRESA CADASTRADA NA URL
                             window.history.pushState('Object', 'Categoria JavaScript', 'proprio?id=' + response);
+                            document.getElementById('edtacao').value = 'e';
+                            document.getElementById('edtid').value = response;
+                            controle_pagina();
                             //CHAMAMOS A FUNÇÃO DE CONTROLE DE ALERTAS PARA EXEBIR A MSG DE SUCESSO
                             alerta(0, 'Cadastro realizado com sucesso!', 'Sucesso!', '');
                         } else {
                             //CHAMAMOS A FUNÇÃO DE CONTROLE DE ALERTAS PARA EXEBIR A MSG DE FALHA NA ROTINA
                             alerta(0, 'Falha no cadastro!', 'Falha!', '');
                         }
-
                     } else if (document.getElementById('edtacao').value == 'e') {
                         if (response != 'false') {
                             $('html, body').animate({ scrollTop: 0 }, 'slow');

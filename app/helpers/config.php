@@ -20,9 +20,16 @@ if (isset($empresa)) :
     //PEGAMOS O DIRETORIO BASE DO ICONE E DO LOGO
     $dir_logo  = "img/" . $cnpj .  "/logo/";
     $dir_icone = "img/" . $cnpj  . "/icone/";
-
-    $full_icone = ($icone ? $dir_icone . $icone[0]["nome_arquivo"] : 'img/icon.png');
-    $full_logo  = ($logo ? $dir_logo . $logo[1]["nome_arquivo"] : 'img/icon.png');
+    if (!empty($icone[0])) :
+        $full_icone = ($icone ? $dir_icone . $icone[0]["nome_arquivo"] : 'img/icon.png');
+    else :
+        $full_icone = "";
+    endif;
+    if (!empty($logo[1])) :
+        $full_logo  = ($logo ? $dir_logo . $logo[1]["nome_arquivo"] : 'img/icon.png');
+    else :
+        $full_logo  = "";
+    endif;
     define(
         "EMPRESA",
         array(
@@ -34,25 +41,25 @@ if (isset($empresa)) :
             "logo_dados" => json_encode(
                 array(
                     //CAPTURAMOS O NOME DA IMAGEM
-                    "caption" => $logo[1]["nome_arquivo"],
+                    "caption" => (($logo[0]) ? $logo[0]["nome_arquivo"] : ""),
                     //CAPTURAMOS O TAMANHO DA IMAGEM
                     "size" => ((file_exists($full_logo)) ? strval(filesize($full_logo)) : 0),
                     //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
                     "url" => "controlearquivo",
                     //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
-                    "extra" => array("id" => $logo[1]["id"], "edtacao" => "dlogo", "dir" => $full_logo)
+                    "extra" => array("id" => ((!empty($logo[1])) ? $logo[1]["id"] : "0"), "edtacao" => "dlogo", "dir" => $full_logo)
                 )
             ),
             "icone_dados" => json_encode(
                 array(
                     //CAPTURAMOS O NOME DA IMAGEM
-                    "caption" => $icone[0]["nome_arquivo"],
+                    "caption" => ((!empty($icone[0])) ? $icone[0]["nome_arquivo"] : ""),
                     //CAPTURAMOS O TAMANHO DA IMAGEM
                     "size" => strval((file_exists($full_icone)) ? filesize($full_icone) : 0),
                     //DEFINIMOS O LINK PARA QUISIÇÕES DELETE 
                     "url" => "controlearquivo",
                     //PASSA O ID OU CÓDIGO DO ARQUIVO E A AÇÃO 
-                    "extra" => array("id" => $icone[0]["id"], "edtacao" => "dicone", "dir" => $full_icone)
+                    "extra" => array("id" => (!empty($icone[0]) ? $icone[0]["id"] : "0"), "edtacao" => "dicone", "dir" => $full_icone)
                 )
             ),
             "logo" => $full_logo,

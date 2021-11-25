@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% include "site/csscadastro.html" %}
-    <link rel="sortcut icon" href="{{empresa.icone}}" type="image/x-icon" />
+    <link rel="sortcut icon" href="{{visual.icone}}" type="image/x-icon" />
     <title>{{ titulo }}</title>
 </head>
 
@@ -14,7 +14,7 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{empresa.icone}}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{visual.icone}}" alt="AdminLTELogo" height="60" width="60">
         </div>
         {% include "site/admin_top_menu.html" %}
         {% include "site/admin_left_menu.html" %}
@@ -56,7 +56,7 @@
                                                 <div class="card-header p-2">
                                                     <ul class="nav nav-pills">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" href="#activity" id="tb-activity"
+                                                            <a class="nav-link active" href="#empresa" id="tb-empresa"
                                                                 data-toggle="tab">
                                                                 <i class="fas fa-building"> </i> Dados do próprio
                                                             </a>
@@ -77,7 +77,7 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="tab-content">
-                                                        <div class="active tab-pane" id="activity">
+                                                        <div class="active tab-pane" id="empresa">
                                                             <h3>Dados de próprio</h3>
                                                             <div class="card-body">
                                                                 <div class="row">

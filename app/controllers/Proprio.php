@@ -164,11 +164,39 @@ class Proprio extends Base
                     );
                     //RECEBEMOS O RESULTADO DA ATUALIZAÇÃO
                     $update = $this->proprio->update($arrayValues);
-                    //VERIFICAMOS SE O UPDATE DEU CERTO
-                    if ($update) :
-                        echo "true";
+                    if ((file_exists($icone["tmp_name"])) and (file_exists($logo["tmp_name"]))) :
+                        //MONTAMOS UM ARRAY COM OS DADOS DO ARUIVO DO LOGO.
+                        $arrayValuesLogo = array(
+                            "diretorio"    => $dir_logo . DIRECTORY_SEPARATOR . $nome_logo . "." . $ext_logo,
+                            "extensao"     => "." . $ext_logo,
+                            "id_pessoa"    => $id,
+                            "titulo"       => "logo",
+                            "nome_arquivo" => $nome_logo . "." . $ext_logo
+                        );
+                        //MONTAMOS UM ARRAY COM OS DADOS DO ARUIVO DO ICONE.
+                        $arrayValuesIcone = array(
+                            "diretorio"    => $dir_icone . DIRECTORY_SEPARATOR . $nome_icone . "." . $ext_icone,
+                            "extensao"     => "." . $ext_icone,
+                            "id_pessoa"    => $id,
+                            "titulo"       => "icone",
+                            "nome_arquivo" => $nome_icone . "." . $ext_icone
+                        );
+                        move_uploaded_file($logo['tmp_name'], $dir_logo . DIRECTORY_SEPARATOR . $nome_logo . "." . $ext_logo);
+                        move_uploaded_file($icone['tmp_name'], $dir_icone . DIRECTORY_SEPARATOR . $nome_icone . "." . $ext_icone);
+                        //SALVAMOS OS DADOS SO ICONE NO BANCO DE DADOS
+                        $icone_success = $this->arquivo->create($arrayValuesIcone);
+                        //SALVAMOS OS DADOS SO LOGO NO BANCO DE DADOS
+                        $logo_success = $this->arquivo->create($arrayValuesLogo);
+                        if ($icone_success and $logo_success and $update) :
+                            echo $id;
+                        endif;
                     else :
-                        echo "false";
+                        //VERIFICAMOS SE O UPDATE DEU CERTO
+                        if ($update) :
+                            echo "true";
+                        else :
+                            echo "false";
+                        endif;
                     endif;
                     break;
                 case 'd':

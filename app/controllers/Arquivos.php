@@ -25,7 +25,7 @@ class Arquivos extends Base
             $this->arquivo = new Arquivo();
             //CAPTURAMOS A AÇÃO DO FORM
             $acao = filter_input(INPUT_POST, 'edtacao', FILTER_SANITIZE_STRING);
-            $id = filter_input(INPUT_POST, 'edtid', FILTER_SANITIZE_STRING);
+            $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
             //SELECIONAMOS O CAMINHO COMPLETE DO ARQUIVO
             $dir = filter_input(INPUT_POST, 'dir', FILTER_SANITIZE_STRING);
             //VERIFICAMOS QUAL A AÇÃO     
@@ -33,11 +33,10 @@ class Arquivos extends Base
                 case 'dlogo':
                     try {
                         //VERIFICAMOS SE O ARQUIVO EXISTE
-                        if (file_exists(__DIR__ . $dir))
-                            unlink(__DIR__ . $dir); //REMOVEMOS O ARQUIVO
+                        if (file_exists($dir))
+                            unlink($dir); //REMOVEMOS O ARQUIVO
                         //DELETAMOS O REGISTRO DO BANCO DE DADOS    
                         $dados = $this->arquivo->delete('id', $id);
-                        var_dump($dados);
                         //O RETORNO DEVE SER EM JSON
                         echo json_encode(array("status" => true));
                     } catch (PDOException $e) {
@@ -47,11 +46,10 @@ class Arquivos extends Base
                 case 'dicone':
                     try {
                         //VERIFICAMOS SE O ARQUIVO EXISTE
-                        if (file_exists(__DIR__ . $dir))
-                            unlink(__DIR__ . $dir); //REMOVEMOS O ARQUIVO
+                        if (file_exists($dir))
+                            unlink($dir); //REMOVEMOS O ARQUIVO
                         //DELETAMOS O REGISTRO DO BANCO DE DADOS 
                         $dados = $this->arquivo->delete('id', $id);
-                        var_dump($dados);
                         //O RETORNO DEVE SER EM JSON
                         echo json_encode(array("status" => true));
                     } catch (PDOException $e) {
