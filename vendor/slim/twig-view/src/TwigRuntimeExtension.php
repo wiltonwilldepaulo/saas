@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slim Framework (http://slimframework.com)
  *
@@ -14,20 +15,11 @@ use Slim\Interfaces\RouteParserInterface;
 
 class TwigRuntimeExtension
 {
-    /**
-     * @var RouteParserInterface
-     */
-    protected $routeParser;
+    protected RouteParserInterface $routeParser;
 
-    /**
-     * @var string
-     */
-    protected $basePath = '';
+    protected string $basePath = '';
 
-    /**
-     * @var UriInterface
-     */
-    protected $uri;
+    protected UriInterface $uri;
 
     /**
      * @param RouteParserInterface $routeParser Route parser
@@ -77,7 +69,7 @@ class TwigRuntimeExtension
      */
     public function isCurrentUrl(string $routeName, array $data = []): bool
     {
-        $currentUrl = $this->basePath.$this->uri->getPath();
+        $currentUrl = $this->basePath . $this->uri->getPath();
         $result = $this->routeParser->urlFor($routeName, $data);
 
         return $result === $currentUrl;
@@ -92,11 +84,11 @@ class TwigRuntimeExtension
      */
     public function getCurrentUrl(bool $withQueryString = false): string
     {
-        $currentUrl = $this->basePath.$this->uri->getPath();
+        $currentUrl = $this->basePath . $this->uri->getPath();
         $query = $this->uri->getQuery();
 
         if ($withQueryString && !empty($query)) {
-            $currentUrl .= '?'.$query;
+            $currentUrl .= '?' . $query;
         }
 
         return $currentUrl;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slim Framework (http://slimframework.com)
  *
@@ -13,6 +14,7 @@ use ArrayAccess;
 use ArrayIterator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use ReturnTypeWillChange;
 use RuntimeException;
 use Throwable;
 use Twig\Environment;
@@ -24,6 +26,12 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Loader\LoaderInterface;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
 
+use function array_key_exists;
+use function array_merge;
+use function count;
+use function is_array;
+use function is_string;
+
 /**
  * Twig View
  *
@@ -31,29 +39,27 @@ use Twig\RuntimeLoader\RuntimeLoaderInterface;
  * Twig is a PHP component created by Fabien Potencier.
  *
  * @link https://twig.symfony.com/
+ *
+ * @implements ArrayAccess<string, mixed>
  */
 class Twig implements ArrayAccess
 {
     /**
      * Twig loader
-     *
-     * @var LoaderInterface
      */
-    protected $loader;
+    protected LoaderInterface $loader;
 
     /**
      * Twig environment
-     *
-     * @var Environment
      */
-    protected $environment;
+    protected Environment $environment;
 
     /**
      * Default view variables
      *
      * @var array<string, mixed>
      */
-    protected $defaultVariables = [];
+    protected array $defaultVariables = [];
 
     /**
      * @param ServerRequestInterface $request
@@ -64,9 +70,9 @@ class Twig implements ArrayAccess
     public static function fromRequest(ServerRequestInterface $request, string $attributeName = 'view'): self
     {
         $twig = $request->getAttribute($attributeName);
-        if ($twig === null || !($twig instanceof self)) {
+        if (!($twig instanceof self)) {
             throw new RuntimeException(
-                'Twig could not be found in the server request attributes using the key "'. $attributeName .'".'
+                'Twig could not be found in the server request attributes using the key "' . $attributeName . '".'
             );
         }
 
@@ -105,6 +111,8 @@ class Twig implements ArrayAccess
     {
         $this->loader = $loader;
         $this->environment = new Environment($this->loader, $settings);
+        $extension = new TwigExtension();
+        $this->addExtension($extension);
     }
 
     /**
@@ -243,6 +251,7 @@ class Twig implements ArrayAccess
      *
      * @return mixed The key's value, or the default value
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($key)
     {
         if (!$this->offsetExists($key)) {

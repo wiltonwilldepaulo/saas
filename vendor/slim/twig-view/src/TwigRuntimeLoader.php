@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slim Framework (http://slimframework.com)
  *
@@ -15,20 +16,11 @@ use Twig\RuntimeLoader\RuntimeLoaderInterface;
 
 class TwigRuntimeLoader implements RuntimeLoaderInterface
 {
-    /**
-     * @var RouteParserInterface
-     */
-    protected $routeParser;
+    protected RouteParserInterface $routeParser;
 
-    /**
-     * @var UriInterface
-     */
-    protected $uri;
+    protected UriInterface $uri;
 
-    /**
-     * @var string
-     */
-    protected $basePath = '';
+    protected string $basePath = '';
 
     /**
      * TwigRuntimeLoader constructor.
@@ -45,7 +37,11 @@ class TwigRuntimeLoader implements RuntimeLoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create the runtime implementation of a Twig element.
+     *
+     * @param string $class
+     *
+     * @return mixed
      */
     public function load(string $class)
     {

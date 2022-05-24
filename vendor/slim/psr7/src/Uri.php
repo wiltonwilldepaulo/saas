@@ -149,7 +149,7 @@ class Uri implements UriInterface
         }
 
         $scheme = str_replace('://', '', strtolower($scheme));
-        if (!key_exists($scheme, self::SUPPORTED_SCHEMES)) {
+        if (!key_exists($scheme, static::SUPPORTED_SCHEMES)) {
             throw new InvalidArgumentException(
                 'Uri scheme must be one of: "' . implode('", "', array_keys(static::SUPPORTED_SCHEMES)) . '"'
             );
@@ -484,7 +484,20 @@ class Uri implements UriInterface
         $query = $this->getQuery();
         $fragment = $this->getFragment();
 
-        $path = '/' . ltrim($path, '/');
+        if ($path !== '') {
+            if ($path[0] !== '/') {
+                if ($authority !== '') {
+                    // If the path is rootless and an authority is present, the path MUST be prefixed by "/".
+                    $path = '/' . $path;
+                }
+            } elseif (isset($path[1]) && $path[1] === '/') {
+                if ($authority === '') {
+                    // If the path is starting with more than one "/" and no authority is present,
+                    // the starting slashes MUST be reduced to one.
+                    $path = '/' . ltrim($path, '/');
+                }
+            }
+        }
 
         return ($scheme !== '' ? $scheme . ':' : '')
             . ($authority !== '' ? '//' . $authority : '')

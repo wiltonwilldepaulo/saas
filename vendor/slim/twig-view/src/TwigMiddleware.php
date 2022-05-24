@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slim Framework (http://slimframework.com)
  *
@@ -9,7 +10,6 @@ declare(strict_types=1);
 
 namespace Slim\Views;
 
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -20,25 +20,13 @@ use Slim\Interfaces\RouteParserInterface;
 
 class TwigMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Twig
-     */
-    protected $twig;
+    protected Twig $twig;
 
-    /**
-     * @var RouteParserInterface
-     */
-    protected $routeParser;
+    protected RouteParserInterface $routeParser;
 
-    /**
-     * @var string
-     */
-    protected $basePath;
+    protected string $basePath;
 
-    /**
-     * @var string|null
-     */
-    protected $attributeName;
+    protected ?string $attributeName;
 
     /**
      * @param App    $app
@@ -108,15 +96,17 @@ class TwigMiddleware implements MiddlewareInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Process an incoming server request.
+     *
+     * @param ServerRequestInterface  $request
+     * @param RequestHandlerInterface $handler
+     *
+     * @return ResponseInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $runtimeLoader = new TwigRuntimeLoader($this->routeParser, $request->getUri(), $this->basePath);
         $this->twig->addRuntimeLoader($runtimeLoader);
-
-        $extension = new TwigExtension();
-        $this->twig->addExtension($extension);
 
         if ($this->attributeName !== null) {
             $request = $request->withAttribute($this->attributeName, $this->twig);
